@@ -5,7 +5,7 @@
     "image":"/me/me.webp",
     "email":"claiderman.lozano@gmail.com",
     "phone":"+573014128547",
-    "url":"https://github.com/AlexGod05",
+    "url":"https://github.com/claiderman",
     "summary":"Desarrollador Backend con más de 4 años de experiencia en desarrollo de software. Tiene conocimientos en Java, TypeScript, Python y servicios cloud (AWS, Azure). Ha trabajado implementando APIs REST, gestionando bases de datos y desplegando soluciones en la nube. Ha tenido la oportunidad de contribuir en proyectos para clientes como Bancolombia, Banistmo y Grupo Familia, y actualmente trabaja en el desarrollo de backends para videojuegos y aplicaciones interactivas en Polygonus. Le gusta aprender continuamente y adaptarse a nuevas tecnologías.",
     "location":{
       "address":"",
@@ -23,8 +23,8 @@
       },
       {
         "network":"GitHub",
-        "username":"AlexGod05",
-        "url":"https://github.com/AlexGod05"
+        "username":"claiderman",
+        "url":"https://github.com/claiderman"
       }
     ]
   },
@@ -322,7 +322,6 @@
         "Docker"
       ],
       "url":"https://www.academy.polygon.us/",
-      "github": "https://github.com/AlexGod05/academy-backend",
       "icon":"graduation-cap"
     },
     {
@@ -344,7 +343,6 @@
         "Unity WebGL3"
       ],
       "url":"https://www.panafoto.com/",
-      "github": "https://github.com/AlexGod05/panafutbol-api",
       "icon":"futbol"
     },
     {
@@ -366,7 +364,6 @@
         "Unity WebGL3"
       ],
       "url":"https://www.fanta.com/",
-      "github": "https://github.com/AlexGod05/fanta-runner-api",
       "icon":"gamepad"
     },
     {
@@ -386,7 +383,6 @@
         "Excalidraw"
       ],
       "url":"https://www.dprimero.com/",
-      "github": "https://github.com/AlexGod05/dprimero-runner",
       "icon":"snowflake"
     },
     {
@@ -406,7 +402,6 @@
         "Excalidraw"
       ],
       "url":"https://www.comfama.com/",
-      "github": "https://github.com/AlexGod05/comfama-game",
       "icon":"gamepad"
     },
     {
@@ -425,7 +420,6 @@
         "TypeScript"
       ],
       "url":"https://www.polygon.us/",
-      "github": "https://github.com/AlexGod05/nakama-config",
       "icon":"server"
     },
     {
@@ -445,7 +439,6 @@
         "GitHub Actions"
       ],
       "url":"https://www.futureverse.com/",
-      "github": "https://github.com/AlexGod05/futureverse-discord-bot",
       "icon":"robot"
     },
     {
@@ -465,7 +458,6 @@
         "Web3"
       ],
       "url":"https://www.thenextlegends.xyz/",
-      "github": "https://github.com/AlexGod05/tnl-backend",
       "icon":"gamepad"
     },
     {
@@ -485,7 +477,6 @@
         "Web3"
       ],
       "url":"https://www.raicers.com/",
-      "github": "https://github.com/AlexGod05/raicers-api",
       "icon":"car-side"
     },
     {
@@ -505,7 +496,6 @@
         "Web3"
       ],
       "url":"https://www.futureverse.com/ecosystem",
-      "github": "https://github.com/AlexGod05/ai-league-api",
       "icon":"futbol"
     },
     {

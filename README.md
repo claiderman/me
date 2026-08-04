@@ -1,7 +1,7 @@
 # 👋 ¡Hola! Soy Claiderman Alexander Lozano
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/claiderman-lozano)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AlexGod05)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/claiderman)
 
 ## 👨‍💻 Sobre mí
 
@@ -68,7 +68,7 @@ Desarrollador Backend con más de 4 años de experiencia en desarrollo de softwa
 | 📧 Email | claiderman.lozano@gmail.com |
 |----------|----------------------------|
 | 📱 LinkedIn | [Claiderman Alexander Lozano Cardona](https://www.linkedin.com/in/claiderman-lozano) |
-| 🌐 GitHub | [@AlexGod05](https://github.com/AlexGod05) |
+| 🌐 GitHub | [@claiderman](https://github.com/claiderman) |
 
 ---
-⭐️ From [AlexGod05](https://github.com/AlexGod05)
+⭐️ From [claiderman](https://github.com/claiderman)
