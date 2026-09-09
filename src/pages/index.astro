@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirigiendo...</title>
+    <link rel="icon" type="image/svg+xml" href="/me/favicon.svg" />
+  </head>
+  <body>
+    <main style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: system-ui, sans-serif;">
+      <p>Redirigiendo...</p>
+    </main>
+    <script>
+      // Detectar locale preferido: localStorage > idioma del navegador > default (es)
+      const savedLocale = localStorage.getItem('locale');
+      const browserLang = navigator.language.split('-')[0];
+      const supported = ['es', 'en'];
+      const preferredLocale = savedLocale || (supported.includes(browserLang) ? browserLang : 'es');
+      
+      // Redirigir a la versión con locale
+      const basePath = '/me';
+      window.location.href = basePath + '/' + preferredLocale + '/';
+    </script>
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+</style>
