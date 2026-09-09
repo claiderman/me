@@ -1,17 +1,23 @@
 ---
-import { getCVData } from "@utils/cv"
+import getCVData from "../../utils/cv";
 import { Section } from "@sections/index";
 
-const cvData = await getCVData()
-const { name, label, image, location, profiles, phone, email } = cvData.basics
-const { city, department, region } = location
+interface Props {
+  t: (key: string, options?: any) => string;
+  locale: string
+}
 
-const linkedInfo = profiles.find(({ network }) => network === "LinkedIn")
-const linkedUrl = linkedInfo?.url
-const githubInfo = profiles.find(({ network }) => network === "GitHub")
-const githubUrl = githubInfo?.url
+const { t, locale } = Astro.props;
+const cvData = await getCVData(locale);
+const { name, label, image, location, profiles, phone, email } = cvData.basics;
+const { city, department, region } = location;
 
-const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
+const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
+const linkedUrl = linkedInfo?.url;
+const githubInfo = profiles.find(({ network }) => network === "GitHub");
+const githubUrl = githubInfo?.url;
+
+const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 ---
 
 <Section>
@@ -34,14 +40,14 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
   </div>
 </Section>
 
-<Section title="<i class='fas fa-address-card'></i> Contacto">
+<Section title={`<i class='fas fa-address-card'></i> ${t('hero.contact')}`}>
   <div class="contact-info">
     {
       email && (
         <div class="contact-item">
           <a
             href={`mailto:${email}`}
-            title={`Enviar un correo electrónico a ${name} al correo ${email}`}
+            title={`${t('contact.sendEmail')} ${name} ${t('contact.email')} ${email}`}
             target="_blank"
             rel="noopener noreferrer"
             class="icon-link"
@@ -52,7 +58,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
             <a href={`mailto:${email}`} class="contact-value" target="_blank" rel="noopener noreferrer">
               {email}
             </a>
-            <button class="copy-button" onclick={`copyToClipboard('${email}')`} title="Copiar email">
+            <button class="copy-button" onclick={`copyToClipboard('${email}')`} title={t('contact.copyEmail')}>
               <i class="fas fa-copy"></i>
             </button>
           </div>
@@ -64,7 +70,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
         <div class="contact-item">
           <a
             href={`tel:${phone}`}
-            title={`Llamar por teléfono a ${name} al número ${phone}`}
+            title={`${t('contact.call')} ${name} ${t('contact.phone')} ${phone}`}
             target="_blank"
             rel="noopener noreferrer"
             class="icon-link"
@@ -75,7 +81,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
             <a href={`tel:${phone}`} class="contact-value" target="_blank" rel="noopener noreferrer">
               {phone}
             </a>
-            <button class="copy-button" onclick={`copyToClipboard('${phone}')`} title="Copiar teléfono">
+            <button class="copy-button" onclick={`copyToClipboard('${phone}')`} title={t('contact.copyPhone')}>
               <i class="fas fa-copy"></i>
             </button>
           </div>
@@ -87,7 +93,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
         href="https://www.google.com/maps?q=6.299806,-75.535111"
         target="_blank"
         rel="noopener noreferrer"
-        title="Ver ubicación en Google Maps"
+        title={t('contact.location')}
         class="icon-link"
       >
         <i class="fas fa-map-marker-alt"></i>
@@ -96,7 +102,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
         <a href="https://www.google.com/maps?q=6.299806,-75.535111" class="contact-value" target="_blank" rel="noopener noreferrer">
           {city}, {department}, {region}
         </a>
-        <button class="copy-button" onclick={`copyToClipboard('https://www.google.com/maps?q=6.299806,-75.535111')`} title="Copiar ubicación">
+        <button class="copy-button" onclick={`copyToClipboard('https://www.google.com/maps?q=6.299806,-75.535111')`} title={t('contact.copyLocation')}>
           <i class="fas fa-copy"></i>
         </button>
       </div>
@@ -106,7 +112,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
         <div class="contact-item">
           <a
             href={linkedUrl}
-            title={`Visitar el perfil de ${name} en LinkedIn`}
+            title={`${t('contact.viewProfile')} ${name} ${t('contact.linkedin')}`}
             target="_blank"
             rel="noopener noreferrer"
             class="icon-link"
@@ -117,7 +123,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
             <a href={linkedUrl} class="contact-value" target="_blank" rel="noopener noreferrer">
               {linkedUrl}
             </a>
-            <button class="copy-button" onclick={`copyToClipboard('${linkedUrl}')`} title="Copiar perfil de LinkedIn">
+            <button class="copy-button" onclick={`copyToClipboard('${linkedUrl}')`} title={t('contact.copyLinkedIn')}>
               <i class="fas fa-copy"></i>
             </button>
           </div>
@@ -129,7 +135,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
         <div class="contact-item">
           <a
             href={githubUrl}
-            title={`Visitar el perfil de ${name} en GitHub`}
+            title={`${t('contact.viewProfile')} ${name} ${t('contact.github')}`}
             target="_blank"
             rel="noopener noreferrer"
             class="icon-link"
@@ -140,13 +146,24 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
             <a href={githubUrl} class="contact-value" target="_blank" rel="noopener noreferrer">
               {githubUrl}
             </a>
-            <button class="copy-button" onclick={`copyToClipboard('${githubUrl}')`} title="Copiar perfil de GitHub">
+            <button class="copy-button" onclick={`copyToClipboard('${githubUrl}')`} title={t('contact.copyGitHub')}>
               <i class="fas fa-copy"></i>
             </button>
           </div>
         </div>
       )
     }
+    <div class="contact-item download-cv">
+      <a
+        href={`/cv-${name.toLowerCase().replace(/\s+/g, '-')}.pdf`}
+        download
+        class="download-cv-btn"
+        title={t('hero.downloadCV')}
+      >
+        <i class="fas fa-download"></i>
+        <span>{t('hero.downloadCV')}</span>
+      </a>
+    </div>
   </div>
 </Section>
 
@@ -364,6 +381,31 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
     transform: scale(1.1);
   }
 
+  .download-cv {
+    margin-top: 8px;
+  }
+
+  .download-cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .download-cv-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
   @media (width <= 700px) {
     .top-section {
       flex-direction: column;
@@ -413,10 +455,15 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
       width: 32px;
       height: 32px;
     }
+
+    .download-cv-btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>
 
-<script>
+<script client:load>
   declare global {
     interface Window {
       copyToClipboard: (text: string) => void;
@@ -447,6 +494,5 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
       });
   }
   
-  // Exponer la función al ámbito global para que pueda ser accedida desde los atributos onclick
   window.copyToClipboard = copyToClipboard;
 </script>

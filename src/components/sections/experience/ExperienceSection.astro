@@ -2,10 +2,16 @@
 import ExperienceModal from "@sections/experience/modal/ExperienceModal.astro";
 import { Section } from "@sections/index";
 import { Accordion } from "@accordion/index";
-import { getCVData } from "@utils/cv";
+import getCVData from "@utils/cv";
 import CompanyCard from "@sections/experience/company/card/CompanyCard.astro";
 
-const cvData = await getCVData();
+interface Props {
+  t: (key: string, options?: any) => string;
+  locale: string
+}
+
+const { t, locale } = Astro.props;
+const cvData = await getCVData(locale);
 const { work, projects } = cvData;
 
 // Extraer los nombres de las empresas de las experiencias laborales
@@ -22,10 +28,8 @@ work.forEach(exp => {
 });
 
 // Agrupar proyectos por empresa
-// Asegurarnos de que usamos exactamente los mismos nombres de empresa que en las experiencias
 const groupedProjects = {};
 projects.forEach(project => {
-  // Encontrar la empresa que más coincide con el campo company del proyecto
   let matchedCompany = "";
   for (const companyName of companyNames) {
     if (project.company === companyName || 
@@ -36,7 +40,6 @@ projects.forEach(project => {
     }
   }
   
-  // Si no hay coincidencia, usar el valor original
   if (!matchedCompany) {
     matchedCompany = project.company;
   }
@@ -51,7 +54,7 @@ projects.forEach(project => {
 ---
 
 <Section>
-  <Accordion title="Experiencia laboral" icon="fas fa-briefcase" initiallyExpanded={true}>
+  <Accordion title={t('sections.experience')} icon="fas fa-briefcase" initiallyExpanded={true}>
     <div class="companies-grid">
       {
         Object.entries(groupedWork).map(([company, experiences]) => {
@@ -90,4 +93,3 @@ projects.forEach(project => {
   style="display: none;"
 >
 </div>
-

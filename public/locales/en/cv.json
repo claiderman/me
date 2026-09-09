@@ -1,0 +1,533 @@
+{
+  "basics": {
+    "name": "Claiderman Alexander Lozano Cardona",
+    "label": "Backend Developer with Microservices and Cloud Experience",
+    "summary": "Backend Developer with over 4 years of experience in software development. Proficient in Java, TypeScript, Python, and cloud services (AWS, Azure). Has worked implementing REST APIs, managing databases, and deploying cloud solutions. Has contributed to projects for clients like Bancolombia, Banistmo, and Grupo Familia, and currently works on backend development for video games and interactive applications at Polygonus. Enjoys continuous learning and adapting to new technologies.",
+    "location": {
+      "city": "Medellín",
+      "department": "Antioquia",
+      "region": "Colombia",
+      "countryCode": "CO"
+    }
+  },
+  "work": [
+    {
+      "name": "Polygonus",
+      "position": "Backend Developer",
+      "summary": "Develops backend for video game projects and interactive applications, implementing serverless architectures and cloud solutions. Works with clients like Futureverse, Comfama, and Fanta, developing scalable microservices and optimizing performance in high-concurrency environments.",
+      "highlights": [
+        "Designs and implements serverless architectures with TypeScript and AWS Lambda",
+        "Develops APIs with Python (Django/FastAPI) for educational platforms",
+        "Configures and optimizes NAKAMA servers for video games on AWS ECS/ECR",
+        "Implements CI/CD pipelines for automated deployments",
+        "Optimizes PostgreSQL databases and caching systems for high performance"
+      ]
+    },
+    {
+      "name": "Pragma",
+      "position": "Software Developer",
+      "summary": "Developed microservices and REST APIs for financial and retail sector clients, primarily using Java with Spring Framework. Actively participated in cloud solution architecture on AWS and Azure, implementing DevOps practices and agile methodologies (SCRUM/KANBAN).",
+      "highlights": [
+        "Led backend development for Nosotras V-App mobile application, applying microservices architecture",
+        "Implemented audit and logging systems for banking applications at Bancolombia",
+        "Redesigned Pequeñin web platform, improving backend architecture",
+        "Developed PDF delivery system for credit management during pandemic for Banistmo",
+        "Contributed to DevOps implementation with Docker, Kubernetes, and CI/CD on Azure"
+      ]
+    },
+    {
+      "name": "Pragma",
+      "position": "Junior Software Development Intern",
+      "summary": "Contributed as full-stack developer on internal company projects, applying knowledge in Node.js, Java, and Angular. Started experience with AWS implementing solutions with S3, DynamoDB, and Cognito.",
+      "highlights": [
+        "Developed full-stack components for internal company applications",
+        "Implemented frontend features with Angular for management systems",
+        "Built backend services with Node.js and Java for enterprise applications",
+        "Implemented storage solutions with AWS S3 and NoSQL databases",
+        "Collaborated in agile teams applying SCRUM methodologies"
+      ]
+    },
+    {
+      "name": "Emtelco S.A",
+      "position": "Technical Support Advisor",
+      "summary": "Provided specialized technical support for Internet, TV, and landline services at Tigo-UNE. Developed skills in problem resolution, customer service, and technical incident analysis.",
+      "highlights": [
+        "Resolved complex technical issues in telecommunications services",
+        "Improved customer satisfaction with effective solutions",
+        "Implemented cross-selling strategies during technical support",
+        "Used CRM systems for efficient ticket management and tracking",
+        "Participated in specialized customer service and technical support training"
+      ]
+    },
+    {
+      "name": "Autodicol S.A.S",
+      "position": "Systems Technical Intern",
+      "summary": "Developed first enterprise application: an import management system in Java with MySQL that optimized department processes. Additionally, provided technical support to the company team.",
+      "highlights": [
+        "Designed and implemented desktop application in Java for import management",
+        "Developed MySQL database for efficient data storage",
+        "Automated manual processes, reducing management times",
+        "Provided technical support to users and performed equipment maintenance",
+        "Implemented first complete enterprise software project"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Sena",
+      "area": "Technologist in Information Systems Analysis and Development",
+      "studyType": "Technologist",
+      "score": "Outstanding",
+      "courses": [
+        "Software Architecture",
+        "Advanced Web Development",
+        "Relational and NoSQL Databases",
+        "Agile Methodologies",
+        "Information Security"
+      ]
+    },
+    {
+      "institution": "Sena",
+      "area": "Systems Technician",
+      "studyType": "Technician",
+      "score": "Outstanding",
+      "courses": [
+        "Basic Programming",
+        "SQL Databases",
+        "Networks and Communications",
+        "Hardware Maintenance",
+        "Software Development"
+      ]
+    },
+    {
+      "institution": "Sena",
+      "area": "Architectural Drawing Technician",
+      "studyType": "Technician",
+      "score": "Outstanding",
+      "courses": [
+        "Computer-Aided Design",
+        "Graphic Representation",
+        "3D Modeling",
+        "Technical Drawing Standards"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Certified Developer - Associate",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "name": "Scrum Foundation Professional Certificate",
+      "issuer": "CertiProf"
+    },
+    {
+      "name": "Professional Scrum Master I (PSM I)",
+      "issuer": "Scrum.org"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "keywords": [
+        "Java",
+        "TypeScript",
+        "Python",
+        "C#"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "keywords": [
+        "Spring Framework",
+        "FastAPI",
+        "Django"
+      ]
+    },
+    {
+      "name": "Databases",
+      "keywords": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "DynamoDB",
+        "Firebase",
+        "Redis"
+      ]
+    },
+    {
+      "name": "Cloud Services",
+      "keywords": [
+        "AWS"
+      ]
+    },
+    {
+      "name": "Messaging",
+      "keywords": [
+        "RabbitMQ",
+        "SQS"
+      ]
+    },
+    {
+      "name": "DevOps",
+      "keywords": [
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Azure DevOps",
+        "Jenkins",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "name": "Architecture",
+      "keywords": [
+        "Microservices",
+        "REST API",
+        "Webhooks",
+        "RPC",
+        "SOAP",
+        "GraphQL",
+        "WebSocket"
+      ]
+    },
+    {
+      "name": "Tools & Methodologies",
+      "keywords": [
+        "SCRUM",
+        "Kanban",
+        "Jira",
+        "Slack",
+        "Discord"
+      ]
+    },
+    {
+      "name": "Office & Collaboration",
+      "keywords": [
+        "Microsoft Office",
+        "Google Workspace",
+        "Microsoft Teams",
+        "Obsidian",
+        "Excalidraw",
+        "Figma"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Elementary (A2)"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Backend Development",
+      "keywords": [
+        "Microservices Architecture",
+        "Cloud Native",
+        "Serverless Computing",
+        "Performance Optimization"
+      ]
+    },
+    {
+      "name": "Game Development",
+      "keywords": [
+        "Game Backends",
+        "Multiplayer Servers",
+        "Progression Systems",
+        "NAKAMA"
+      ]
+    },
+    {
+      "name": "Emerging Technologies",
+      "keywords": [
+        "Artificial Intelligence",
+        "Blockchain",
+        "Web3",
+        "Edge Computing"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Educational Platform",
+      "client": "Academy",
+      "company": "Polygonus",
+      "description": "Development of educational platform for Polygonus Academy, implementing a system supporting multiple concurrent users with good response times.",
+      "highlights": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "AWS S3",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Panafutbol",
+      "client": "Panafoto",
+      "company": "Polygonus",
+      "description": "Developed a REST API for a football juggling video game with reward system. Implemented an invoice redemption system granting game attempts, leaderboard for prizes, and real-time score synchronization. The API was designed to be consumed by a Unity WebGL3 client.",
+      "highlights": [
+        "TypeScript",
+        "Serverless",
+        "AWS",
+        "GitHub Actions",
+        "PostgreSQL",
+        "Postman",
+        "Excalidraw",
+        "REST API",
+        "Unity WebGL3"
+      ]
+    },
+    {
+      "name": "Fanta Runner",
+      "client": "Fanta",
+      "company": "Polygonus",
+      "description": "Developed a REST API for a runner-type video game, specifically designed for a Unity WebGL3 client. Implemented scoring systems, difficulty progression, and data synchronization with serverless backend.",
+      "highlights": [
+        "TypeScript",
+        "Serverless",
+        "AWS",
+        "GitHub Actions",
+        "PostgreSQL",
+        "Postman",
+        "Excalidraw",
+        "REST API",
+        "Unity WebGL3"
+      ]
+    },
+    {
+      "name": "Dprimero Runner",
+      "client": "Dprimero",
+      "company": "Polygonus",
+      "description": "Developed a runner-type video game with Nordic cold environment where players must dodge barrels and fences. Implemented scoring systems, difficulty progression, and data synchronization with serverless backend.",
+      "highlights": [
+        "TypeScript",
+        "Serverless",
+        "AWS",
+        "GitHub Actions",
+        "PostgreSQL",
+        "Postman",
+        "Excalidraw"
+      ]
+    },
+    {
+      "name": "Everyday Agents",
+      "client": "Comfama",
+      "company": "Polygonus",
+      "description": "Developed an educational video game with gamification system integrating questions and answers to improve learning experience. Implemented a serverless architecture managing user progression and storing results for performance analysis.",
+      "highlights": [
+        "TypeScript",
+        "Serverless",
+        "AWS",
+        "GitHub Actions",
+        "PostgreSQL",
+        "Postman",
+        "Excalidraw"
+      ]
+    },
+    {
+      "name": "Game Server",
+      "client": "NAKAMA",
+      "company": "Polygonus",
+      "description": "Implementation and configuration of NAKAMA server for video games, deployed on AWS ECS and ECR FARGATE. Implemented auto-scaling strategies to optimize resources.",
+      "highlights": [
+        "NAKAMA",
+        "AWS ECS",
+        "AWS ECR",
+        "FARGATE",
+        "Docker",
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "Futureverse Discord Bot",
+      "client": "Futureverse",
+      "company": "Polygonus",
+      "description": "Developed a Discord bot integrating events from TNL and Raicers games. Implemented a Factory and Event-Driven pattern-based system processing SQS messages and distributing them to different services based on event type, keeping the community informed about game updates and events in real-time.",
+      "highlights": [
+        "TypeScript",
+        "Serverless",
+        "AWS SQS",
+        "Discord API",
+        "Event-Driven",
+        "Factory Pattern",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "name": "The Next Legends (TNL)",
+      "client": "Futureverse",
+      "company": "Polygonus",
+      "description": "Developed backend for an innovative AI boxing game where players train virtual boxers. Implemented a serverless architecture managing user profiles, real-time combats, and character progression systems with NFTs.",
+      "highlights": [
+        "TypeScript",
+        "Serverless",
+        "AWS Lambda",
+        "GitHub Actions",
+        "GraphQL",
+        "NFT",
+        "Web3"
+      ]
+    },
+    {
+      "name": "Raicers",
+      "client": "Futureverse",
+      "company": "Polygonus",
+      "description": "Contributed to backend development for an AI-powered racing game where players compete for rewards in scheduled races. Implemented matchmaking, rewards, and digital asset management with cryptocurrencies.",
+      "highlights": [
+        "TypeScript",
+        "AWS",
+        "Serverless",
+        "GitHub Actions",
+        "NFT",
+        "Crypto",
+        "Web3"
+      ]
+    },
+    {
+      "name": "AI League FIFA",
+      "client": "Futureverse",
+      "company": "Polygonus",
+      "description": "Developed backends for an AI-powered smart football game in collaboration with FIFA, where players act as coaches of AI teams. Implemented authentication systems, user profiles, and micropayments through Web3.",
+      "highlights": [
+        "TypeScript",
+        "GraphQL",
+        "AWS",
+        "Serverless",
+        "GitHub Actions",
+        "NFT",
+        "Web3"
+      ]
+    },
+    {
+      "name": "Audit Log System",
+      "client": "Bancolombia",
+      "company": "Pragma",
+      "description": "Contributed to software architecture for a centralized Audit Log system processing daily events from various microservices in the Enterprise area, improving search efficiency.",
+      "highlights": [
+        "SCRUM",
+        "AWS",
+        "Azure DevOps",
+        "Kubernetes",
+        "Docker",
+        "MongoDB",
+        "RabbitMQ"
+      ]
+    },
+    {
+      "name": "Smart Search Engine",
+      "client": "Comfama",
+      "company": "Pragma",
+      "description": "Developed a search system that improved user accessibility to Comfama services, reducing search times and facilitating navigation.",
+      "highlights": [
+        "SCRUM",
+        "Java",
+        "Spring Framework",
+        "AWS",
+        "Azure DevOps",
+        "Mockito",
+        "Junit5",
+        "CMS Contentful",
+        "Redis",
+        "RabbitMQ"
+      ]
+    },
+    {
+      "name": "Digital Credit Management",
+      "client": "Banistmo",
+      "company": "Pragma",
+      "description": "Implemented a PDF delivery system for credit management during the pandemic that processed multiple monthly requests, reducing response times.",
+      "highlights": [
+        "KANBAN",
+        "Java",
+        "Spring Framework",
+        "AWS",
+        "Azure DevOps",
+        "FluidAttack",
+        "Mockito",
+        "Junit5",
+        "PostgreSQL",
+        "Redis",
+        "RabbitMQ"
+      ]
+    },
+    {
+      "name": "V-App Mobile Application",
+      "client": "Nosotras",
+      "company": "Pragma",
+      "description": "Participated in backend development for a mobile application, implementing a microservices architecture that improved system response.",
+      "highlights": [
+        "SCRUM",
+        "Java",
+        "Spring Framework",
+        "AWS",
+        "Jenkins",
+        "GitLab",
+        "Mockito",
+        "Junit5",
+        "MySQL",
+        "Redis",
+        "RabbitMQ",
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Transversal Architecture",
+      "client": "Grupo Familia",
+      "company": "Pragma",
+      "description": "Contributed to a shared architecture for 5 Familia group brands that facilitated new feature development and improved maintenance efficiency.",
+      "highlights": [
+        "SCRUM",
+        "Java",
+        "Spring Framework",
+        "AWS",
+        "Jenkins",
+        "GitLab",
+        "Mockito",
+        "Junit5",
+        "MySQL",
+        "Redis",
+        "RabbitMQ",
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Web Platform",
+      "client": "Pequeñin",
+      "company": "Pragma",
+      "description": "Participated in Pequeñin web platform redesign, implementing a backend architecture that improved load times and user experience.",
+      "highlights": [
+        "SCRUM",
+        "Java",
+        "Spring Framework",
+        "AWS",
+        "Jenkins",
+        "GitLab",
+        "Mockito",
+        "Junit5",
+        "MySQL",
+        "Redis",
+        "RabbitMQ",
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Import Management System",
+      "client": "",
+      "company": "Autodicol S.A.S",
+      "description": "Developed a desktop application for import management that optimized processing and reduced errors in reports, improving department workflow.",
+      "highlights": [
+        "Java",
+        "MySQL",
+        "Reports",
+        "Data Persistence",
+        "Excel Export"
+      ]
+    }
+  ]
+}

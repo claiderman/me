@@ -20,6 +20,7 @@
       "@data/*": ["src/data/*"],
       "@utils/*": ["src/utils/*"],
       "@scripts/*": ["src/scripts/*"],
+      "@i18n/*": ["src/i18n/*"],
       "@icons/*": ["src/icons/*"],
       "@globalStyles/*": ["src/styles/global.css"]
     },

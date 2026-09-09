@@ -43,7 +43,7 @@ const { id, title, subtitle } = Astro.props;
   </div>
 </div>
 
-<script>
+<script client:load>
   function initModal(modalId: string) {
     const modal = document.getElementById(modalId);
     if (!modal) return;

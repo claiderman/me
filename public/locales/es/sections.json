@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "title": "Desarrollador Backend",
+    "subtitle": "Especialista en Microservicios, Cloud y Arquitecturas Serverless",
+    "cta": {
+      "downloadCV": "Descargar CV",
+      "contact": "Contactar",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "about": {
+    "title": "Sobre mí",
+    "description": "Desarrollador Backend apasionado por crear soluciones escalables y eficientes. Con experiencia en el sector financiero, retail y videojuegos, he trabajado construyendo arquitecturas robustas que soportan millones de usuarios."
+  },
+  "experience": {
+    "title": "Experiencia Laboral",
+    "subtitle": "Mi trayectoria profesional en desarrollo de software",
+    "noExperience": "No hay experiencia registrada",
+    "viewDetails": "Ver detalles",
+    "technologies": "Tecnologías utilizadas",
+    "highlights": "Logros principales"
+  },
+  "education": {
+    "title": "Educación",
+    "subtitle": "Formación académica y certificaciones",
+    "noEducation": "No hay educación registrada",
+    "courses": "Cursos relevantes",
+    "score": "Calificación",
+    "studyType": "Tipo de estudio"
+  },
+  "languages": {
+    "title": "Idiomas",
+    "subtitle": "Competencias lingüísticas",
+    "noLanguages": "No hay idiomas registrados",
+    "fluency": {
+      "native": "Nativo",
+      "fluent": "Fluido",
+      "professional": "Profesional",
+      "intermediate": "Intermedio",
+      "elementary": "Elemental",
+      "basic": "Básico"
+    }
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "subtitle": "Tecnologías y herramientas que domino",
+    "noSkills": "No hay habilidades registradas",
+    "categories": "Categorías"
+  },
+  "certificates": {
+    "title": "Certificaciones",
+    "subtitle": "Certificaciones profesionales obtenidas",
+    "noCertificates": "No hay certificaciones registradas",
+    "issuer": "Emisor",
+    "date": "Fecha"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "subtitle": "Algunos de los proyectos en los que he trabajado",
+    "noProjects": "No hay proyectos registrados",
+    "client": "Cliente",
+    "company": "Empresa",
+    "technologies": "Tecnologías",
+    "viewProject": "Ver proyecto"
+  },
+  "interests": {
+    "title": "Intereses",
+    "subtitle": "Áreas que me apasionan y en las que sigo aprendiendo",
+    "noInterests": "No hay intereses registrados"
+  }
+}

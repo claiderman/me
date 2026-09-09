@@ -1,14 +1,20 @@
 ---
 import { Section } from "@sections/index";
 import { Accordion } from "@accordion/index";
-import { getCVData } from "@utils/cv";
+import getCVData from "@utils/cv";
 
-const cvData = await getCVData();
-const { languages } = cvData;
+interface Props {
+  t: (key: string, options?: any) => string;
+  locale: string
+}
+
+const { t, locale } = Astro.props;
+const cvData = await getCVData(locale)
+const { languages } = cvData
 ---
 
 <Section>
-  <Accordion title="Idiomas" icon="fas fa-language">
+  <Accordion title={t('sections.languages')} icon="fas fa-language">
     <div class="cards-grid languages-grid">
       {
         languages.map(({ language, fluency }) => (
@@ -16,9 +22,9 @@ const { languages } = cvData;
             <div class="card-content">
               <div class="card-header language-header">
                 <div class="language-icon">
-                  {language === "Español" ? (
+                  {language === "Español" || language === "Spanish" ? (
                     <i class="fas fa-flag"></i>
-                  ) : language === "Inglés" ? (
+                  ) : language === "Inglés" || language === "English" ? (
                     <i class="fas fa-language"></i>
                   ) : (
                     <i class="fas fa-globe"></i>
@@ -28,7 +34,7 @@ const { languages } = cvData;
                   <h3 class="language-name">{language}</h3>
                   <p class="language-level">{fluency}</p>
                 </div>
-                {language === "Inglés" && (
+                {(language === "Inglés" || language === "English") && (
                   <div class="language-badge">A2</div>
                 )}
               </div>
@@ -120,4 +126,4 @@ const { languages } = cvData;
       font-size: 0.85rem;
     }
   }
-</style> 
+</style>

@@ -2,9 +2,15 @@
 import SkillCard from "./card/SkillCard.astro";
 import { Accordion } from "@accordion/index";
 import { Section } from "@sections/index";
-import { getCVData } from "@utils/cv"
+import getCVData from "@utils/cv"
 
-const cvData = await getCVData()
+interface Props {
+  t: (key: string, options?: any) => string;
+  locale: string
+}
+
+const { t, locale } = Astro.props;
+const cvData = await getCVData(locale)
 const { skills } = cvData
 
 const SKILLS_ICONS: Record<string, string> = {
@@ -156,7 +162,7 @@ const SKILL_NAME_TO_ICON: Record<string, string> = {
 ---
 
 <Section>
-  <Accordion title="Habilidades" icon="fas fa-tools" initiallyExpanded={true}>
+  <Accordion title={t('sections.skills')} icon="fas fa-tools" initiallyExpanded={true}>
     <div class="cards-grid skills-grid">
       {
         skills.map(({ name, keywords }) => {

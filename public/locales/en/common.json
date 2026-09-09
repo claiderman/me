@@ -1,0 +1,94 @@
+{
+  "navigation": {
+    "home": "Home",
+    "profile": "Profile",
+    "experience": "Experience",
+    "education": "Education",
+    "languages": "Languages",
+    "skills": "Skills"
+  },
+  "hero": {
+    "contact": "Contact",
+    "downloadCV": "Download CV",
+    "location": "Location"
+  },
+  "sections": {
+    "about": "About Me",
+    "experience": "Work Experience",
+    "education": "Education",
+    "languages": "Languages",
+    "skills": "Technical Skills",
+    "certificates": "Certifications",
+    "projects": "Featured Projects",
+    "interests": "Interests"
+  },
+  "common": {
+    "present": "Present",
+    "until": "Until",
+    "from": "From",
+    "to": "To",
+    "location": "Location",
+    "company": "Company",
+    "position": "Position",
+    "duration": "Duration",
+    "highlights": "Key Achievements",
+    "technologies": "Technologies",
+    "description": "Description",
+    "summary": "Summary",
+    "details": "Details",
+    "viewMore": "View More",
+    "viewLess": "View Less",
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "download": "Download",
+    "print": "Print",
+    "share": "Share",
+    "theme": "Theme",
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "colorTheme": "Color Theme",
+    "scrollToTop": "Scroll to Top"
+  },
+  "contact": {
+    "email": "Email",
+    "phone": "Phone",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "Location",
+    "sendEmail": "Send Email",
+    "call": "Call",
+    "viewProfile": "View Profile",
+    "copyEmail": "Copy Email",
+    "copyPhone": "Copy Phone",
+    "copyLocation": "Copy Location",
+    "copyLinkedIn": "Copy LinkedIn",
+    "copyGitHub": "Copy GitHub"
+  },
+  "modal": {
+    "close": "Close",
+    "experienceDetails": "Experience Details",
+    "educationDetails": "Education Details",
+    "projectDetails": "Project Details"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "builtWith": "Built with",
+    "deployedOn": "Deployed on"
+  },
+  "aria": {
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Toggle language",
+    "openColorPicker": "Open color picker",
+    "selectColor": "Select color",
+    "scrollToTop": "Scroll to top",
+    "downloadCV": "Download CV as PDF",
+    "copyToClipboard": "Copy to clipboard",
+    "closeModal": "Close modal",
+    "navigationMenu": "Navigation menu",
+    "mainContent": "Main content"
+  }
+}

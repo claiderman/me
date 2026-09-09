@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "title": "Backend Developer",
+    "subtitle": "Specialist in Microservices, Cloud & Serverless Architectures",
+    "cta": {
+      "downloadCV": "Download CV",
+      "contact": "Contact",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Passionate Backend Developer focused on creating scalable and efficient solutions. With experience in financial, retail, and gaming sectors, I've built robust architectures supporting millions of users."
+  },
+  "experience": {
+    "title": "Work Experience",
+    "subtitle": "My professional journey in software development",
+    "noExperience": "No experience recorded",
+    "viewDetails": "View Details",
+    "technologies": "Technologies Used",
+    "highlights": "Key Achievements"
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "Academic background and certifications",
+    "noEducation": "No education recorded",
+    "courses": "Relevant Courses",
+    "score": "Grade",
+    "studyType": "Study Type"
+  },
+  "languages": {
+    "title": "Languages",
+    "subtitle": "Language Proficiencies",
+    "noLanguages": "No languages recorded",
+    "fluency": {
+      "native": "Native",
+      "fluent": "Fluent",
+      "professional": "Professional",
+      "intermediate": "Intermediate",
+      "elementary": "Elementary",
+      "basic": "Basic"
+    }
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "subtitle": "Technologies and tools I master",
+    "noSkills": "No skills recorded",
+    "categories": "Categories"
+  },
+  "certificates": {
+    "title": "Certifications",
+    "subtitle": "Professional certifications earned",
+    "noCertificates": "No certifications recorded",
+    "issuer": "Issuer",
+    "date": "Date"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Some of the projects I've worked on",
+    "noProjects": "No projects recorded",
+    "client": "Client",
+    "company": "Company",
+    "technologies": "Technologies",
+    "viewProject": "View Project"
+  },
+  "interests": {
+    "title": "Interests",
+    "subtitle": "Areas I'm passionate about and keep learning",
+    "noInterests": "No interests recorded"
+  }
+}

@@ -5,12 +5,13 @@ interface Props {
     title: string;
     icon: string;
   }[];
+  t: (key: string, options?: any) => string;
 }
 
-const { sections } = Astro.props;
+const { sections, t } = Astro.props;
 ---
 
-<nav class="timeline-nav">
+<nav class="timeline-nav" aria-label={t('aria.navigationMenu')}>
   <div class="timeline-line"></div>
   <ul>
     {
@@ -194,7 +195,7 @@ const { sections } = Astro.props;
   }
 </style>
 
-<script>
+<script client:load>
   // Highlight active section based on scroll position
   const observerOptions = {
     root: null,
@@ -219,4 +220,4 @@ const { sections } = Astro.props;
   document.querySelectorAll('section[id]').forEach((section) => {
     observer.observe(section);
   });
-</script> 
+</script>
