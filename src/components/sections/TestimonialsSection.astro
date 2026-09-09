@@ -1,0 +1,94 @@
+---
+import type { I18nTFunction } from "@types";
+import getCVData from "../../utils/cv";
+
+interface Props {
+  t: I18nTFunction;
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const cvData = await getCVData(locale);
+const { testimonials } = cvData;
+---
+
+<Section title={`<i class='fas fa-quote-left'></i> ${t('sections.testimonials').trimEnd()}`}>
+  <div class="testimonials-grid">
+    {testimonials?.map((testimonial, index) => (
+      <article class="testimonial-card" key={index}>
+        <div class="testimonial-rating">
+          {Array(5).fill(0).map((_, i) => (
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 2l3.09 6.26L20 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l4.91-1.01L12 2z"/>
+            </svg>
+          ))}
+        </div>
+        <div class="testimonial-author">
+          <h4>{testimonial.author}</h4>
+          <p>{testimonial.company}</p>
+        </div>
+        <blockquote>
+          {testimonial.text}
+        </blockquote>
+      </article>
+    ))}
+  </div>
+</Section>
+
+<style>
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: "\201D";
+    font-size: 6rem;
+    color: var(--primary);
+    opacity: 0.1;
+    position: absolute;
+    top: -3rem;
+    left: 1rem;
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  .testimonial-rating svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.25rem;
+  }
+
+  .testimonial-author h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .testimonial-author p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  blockquote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0;
+  }
+</style>

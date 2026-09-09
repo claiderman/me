@@ -1,16 +1,15 @@
 ---
-import { Section } from "@sections/index";
-import { Accordion } from "@accordion/index";
+import type { I18nTFunction } from "@types";
 import getCVData from "@utils/cv";
 
 interface Props {
-  t: (key: string, options?: any) => string;
-  locale: string
+  t: I18nTFunction;
+  locale: string;
 }
 
 const { t, locale } = Astro.props;
-const cvData = await getCVData(locale)
-const { languages } = cvData
+const cvData = await getCVData(locale);
+const { languages } = cvData;
 ---
 
 <Section>

@@ -1,1 +1,1 @@
-export { default as ClientInit } from './ClientInit.astro';
+export { default as ClientInit } from "./ClientInit.astro";

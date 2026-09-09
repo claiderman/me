@@ -7,8 +7,9 @@ export interface Experience {
 }
 
 export function renderExperienceCards(experiences: Experience[]): string {
-  return experiences.map(exp => {
-    return `
+  return experiences
+    .map((exp) => {
+      return `
       <div class="experience-item">
         <div class="experience-content">
           <div class="summary-card">
@@ -18,16 +19,21 @@ export function renderExperienceCards(experiences: Experience[]): string {
           <div class="highlights-card">
             <h4>Logros y Responsabilidades</h4>
             <ul>
-              ${exp.highlights.map(highlight => `
+              ${exp.highlights
+                .map(
+                  (highlight) => `
                 <li>
                   <span class="bullet">•</span>
                   <span>${highlight}</span>
                 </li>
-              `).join('')}
+              `,
+                )
+                .join("")}
             </ul>
           </div>
         </div>
       </div>
     `;
-  }).join('');
-} 
+    })
+    .join("");
+}

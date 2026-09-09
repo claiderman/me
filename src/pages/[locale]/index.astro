@@ -1,36 +1,47 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import { loadTranslations } from "@i18n/utils";
-
-import { EducationSection, ExperienceSection, SkillsSection, LanguagesSection } from "@sections/index";
+import { EducationSection, ExperienceSection, SkillsSection, LanguagesSection, TestimonialsSection } from "@sections/index";
 import { ScrollToTopButton, FloatingButtons } from "@buttons/index";
-import TimelineNav from "../../components/TimelineNav.astro";
+import TimelineNav from "@components/TimelineNav.astro";
 import About from "@sections/About.astro";
 import Hero from "@sections/Hero.astro";
-
 import getCVData from "@utils/cv";
 import "../../styles/global.css";
 
 export const getStaticPaths = async () => {
-  return ['es', 'en'].map(locale => ({
+  return ["es", "en"].map((locale) => ({
     params: { locale },
-    props: { locale }
+    props: { locale },
   }));
 };
 
 const { locale } = Astro.params;
-const t = await loadTranslations(locale as 'es' | 'en');
+const t = await loadTranslations(locale as "es" | "en");
 
-const cvData = await getCVData(locale as 'es' | 'en');
+const cvData = await getCVData(locale as "es" | "en");
 const { name, label } = cvData.basics;
 
 const sections = [
-  { id: "inicio", title: t('navigation.home'), icon: "fas fa-home" },
-  { id: "sobre-mi", title: t('navigation.profile'), icon: "fas fa-id-card" },
-  { id: "experiencia", title: t('navigation.experience'), icon: "fas fa-briefcase" },
-  { id: "educacion", title: t('navigation.education'), icon: "fas fa-graduation-cap" },
-  { id: "idiomas", title: t('navigation.languages'), icon: "fas fa-language" },
-  { id: "habilidades", title: t('navigation.skills'), icon: "fas fa-tools" }
+  { id: "inicio", title: t("navigation.home"), icon: "fas fa-home" },
+  { id: "sobre-mi", title: t("navigation.profile"), icon: "fas fa-id-card" },
+  {
+    id: "experiencia",
+    title: t("navigation.experience"),
+    icon: "fas fa-briefcase",
+  },
+  {
+    id: "testimonios",
+    title: t("sections.testimonials"),
+    icon: "fas fa-quote-left",
+  },
+  {
+    id: "educacion",
+    title: t("navigation.education"),
+    icon: "fas fa-graduation-cap",
+  },
+  { id: "idiomas", title: t("navigation.languages"), icon: "fas fa-language" },
+  { id: "habilidades", title: t("navigation.skills"), icon: "fas fa-tools" },
 ];
 ---
 
@@ -51,6 +62,9 @@ const sections = [
     </section>
     <section id="idiomas">
       <LanguagesSection t={t} locale={locale} />
+    </section>
+    <section id="testimonios">
+      <TestimonialsSection t={t} locale={locale} />
     </section>
     <section id="habilidades">
       <SkillsSection t={t} locale={locale} />

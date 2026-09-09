@@ -1,19 +1,18 @@
 ---
-import { getInitialTheme } from '../components/theme/script/theme';
-import '../components/modal/styles/modal-tabs.css';
-import { ClientInit } from '@client/index';
-import getCVData from "@utils/cv"
-import '@globalStyles/global.css';
+import { getInitialTheme } from "../components/theme/script/theme";
+import "../components/modal/styles/modal-tabs.css";
+import getCVData from "@utils/cv";
+import "@globalStyles/global.css";
 
 interface Props {
-  title: string
-  locale: string
+  title: string;
+  locale: string;
 }
 
-const { title, locale } = Astro.props
-const cvData = getCVData(locale)
-const { name, label, image, summary, location, profiles } = cvData.basics
-const linkedInUrl = profiles.find(p => p.network === "LinkedIn")?.url
+const { title, locale } = Astro.props;
+const cvData = getCVData(locale);
+const { name, label, image, summary, location, profiles } = cvData.basics;
+const linkedInUrl = profiles.find((p) => p.network === "LinkedIn")?.url;
 const initialTheme = getInitialTheme();
 ---
 

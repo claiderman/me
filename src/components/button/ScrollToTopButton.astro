@@ -1,6 +1,8 @@
 ---
+import type { I18nTFunction } from "@types";
+
 interface Props {
-  t: (key: string, options?: any) => string;
+  t: I18nTFunction;
 }
 
 const { t } = Astro.props;

@@ -1,10 +1,10 @@
 ---
+import type { I18nTFunction } from "@types";
 import getCVData from "../../utils/cv";
-import { Section } from "@sections/index";
 
 interface Props {
-  t: (key: string, options?: any) => string;
-  locale: string
+  t: I18nTFunction;
+  locale: string;
 }
 
 const { t, locale } = Astro.props;
@@ -15,9 +15,9 @@ const { city, department, region } = location;
 const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
 const linkedUrl = linkedInfo?.url;
 const githubInfo = profiles.find(({ network }) => network === "GitHub");
-const githubUrl = githubInfo?.url;
+const _githubUrl = githubInfo?.url;
 
-const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
+const _printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 ---
 
 <Section>
@@ -170,7 +170,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
     }
     <div class="contact-item download-cv">
       <a
-        href={`/cv-${name.toLowerCase().replace(/\s+/g, '-')}.pdf`}
+        href={`/me/locales/${locale}/cv.pdf`}
         download
         class="download-cv-btn"
         title={t('hero.downloadCV')}

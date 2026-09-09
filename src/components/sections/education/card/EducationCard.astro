@@ -1,6 +1,4 @@
 ---
-import { CompactYearBadge } from '@yearBadge/index';
-
 interface Props {
   institution: string;
   area: string;
@@ -11,8 +9,9 @@ interface Props {
   score?: string;
 }
 
-const { institution, area, studyType, startYear, endYear, url, score } = Astro.props;
-const isLanguage = area === "Inglés";
+const { institution, area, studyType, startYear, endYear, url, score } =
+  Astro.props;
+const _isLanguage = area === "Inglés";
 ---
 
 <a href={url} target="_blank" rel="noopener noreferrer" class="card education-card">

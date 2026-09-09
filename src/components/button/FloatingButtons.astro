@@ -1,15 +1,16 @@
 ---
-import { localeFlags, type Locale, defaultLocale } from '@i18n/config';
+import { defaultLocale, type Locale } from "@i18n/config";
+import type { I18nTFunction } from "@types";
 
 interface Props {
-  t: (key: string, options?: any) => string;
+  t: I18nTFunction;
   locale?: Locale;
   name: string;
 }
 
 const { t, locale, name } = Astro.props;
 const effectiveLocale: Locale = locale || defaultLocale;
-const langCode = effectiveLocale.toUpperCase();
+const _langCode = effectiveLocale.toUpperCase();
 ---
 
 <div class="floating-buttons">

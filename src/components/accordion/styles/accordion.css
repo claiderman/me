@@ -23,7 +23,7 @@
 }
 
 .accordion-header:hover {
-  border-color: var(--primary, #8B0000);
+  border-color: var(--primary, #8b0000);
   background-color: var(--bg-hover);
 }
 
@@ -131,7 +131,7 @@
 }
 
 .accordion-item .accordion-header:hover {
-  border-color: var(--primary, #8B0000);
+  border-color: var(--primary, #8b0000);
   background-color: var(--bg-hover);
 }
 
@@ -162,15 +162,15 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .accordion-header {
     gap: 0.5rem;
   }
-  
+
   .accordion-icon-wrapper {
     margin-left: 0.25rem;
   }
-  
+
   .modal .year-badge,
   .year-badge {
     padding: 0.2rem 0.6rem;
@@ -182,7 +182,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--primary, #8B0000);
+  background-color: var(--primary, #8b0000);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -211,4 +211,4 @@
   padding: 0.5rem 0;
   z-index: 0;
   position: relative;
-} 
+}

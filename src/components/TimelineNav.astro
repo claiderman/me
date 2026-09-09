@@ -1,11 +1,13 @@
 ---
+import type { I18nTFunction } from "@types";
+
 interface Props {
   sections: {
     id: string;
     title: string;
     icon: string;
   }[];
-  t: (key: string, options?: any) => string;
+  t: I18nTFunction;
 }
 
 const { sections, t } = Astro.props;

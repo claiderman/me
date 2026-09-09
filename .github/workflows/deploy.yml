@@ -30,6 +30,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint code
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
       - name: Build Astro site
         run: npm run build
 

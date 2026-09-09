@@ -1,6 +1,4 @@
 ---
-import { CompactYearBadge } from '@yearBadge/index';
-
 interface Props {
   company: string;
   startYear: string | number;
@@ -9,7 +7,7 @@ interface Props {
 
 const { company, startYear, endYear } = Astro.props;
 
-const displayEndYear = endYear || "Actual";
+const _displayEndYear = endYear || "Actual";
 ---
 
 <div class="company-card" data-company={company}>

@@ -10,15 +10,15 @@ interface Props {
 const {
   startYear,
   endYear,
-  class: className = '',
+  class: className = "",
   showIcon = true,
-  variant = "primary"
+  variant = "primary",
 } = Astro.props;
 
-const displayEndYear = endYear || "Actual";
-const sameYear = startYear === endYear && endYear !== undefined;
+const _displayEndYear = endYear || "Actual";
+const _sameYear = startYear === endYear && endYear !== undefined;
 
-const getVariantClass = () => {
+const _getVariantClass = () => {
   switch (variant) {
     case "secondary":
       return "year-badge-secondary";

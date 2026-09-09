@@ -129,20 +129,11 @@
   "skills": [
     {
       "name": "Lenguajes de Programación",
-      "keywords": [
-        "Java",
-        "TypeScript",
-        "Python",
-        "C#"
-      ]
+      "keywords": ["Java", "TypeScript", "Python", "C#"]
     },
     {
       "name": "Frameworks",
-      "keywords": [
-        "Spring Framework",
-        "FastAPI",
-        "Django"
-      ]
+      "keywords": ["Spring Framework", "FastAPI", "Django"]
     },
     {
       "name": "Bases de Datos",
@@ -157,16 +148,11 @@
     },
     {
       "name": "Servicios Cloud",
-      "keywords": [
-        "AWS"
-      ]
+      "keywords": ["AWS"]
     },
     {
       "name": "Mensajería",
-      "keywords": [
-        "RabbitMQ",
-        "SQS"
-      ]
+      "keywords": ["RabbitMQ", "SQS"]
     },
     {
       "name": "DevOps",
@@ -193,13 +179,7 @@
     },
     {
       "name": "Herramientas y Metodologías",
-      "keywords": [
-        "SCRUM",
-        "Kanban",
-        "Jira",
-        "Slack",
-        "Discord"
-      ]
+      "keywords": ["SCRUM", "Kanban", "Jira", "Slack", "Discord"]
     },
     {
       "name": "Ofimática y Colaboración",
@@ -258,13 +238,7 @@
       "client": "Academy",
       "company": "Polygonus",
       "description": "Desarrollo de plataforma educativa para la academia de Polygonus, implementando un sistema que soporta múltiples usuarios concurrentes con buenos tiempos de respuesta.",
-      "highlights": [
-        "Python",
-        "FastAPI",
-        "PostgreSQL",
-        "AWS S3",
-        "Docker"
-      ]
+      "highlights": ["Python", "FastAPI", "PostgreSQL", "AWS S3", "Docker"]
     },
     {
       "name": "Panafutbol",

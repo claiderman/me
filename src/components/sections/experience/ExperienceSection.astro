@@ -1,13 +1,10 @@
 ---
-import ExperienceModal from "@sections/experience/modal/ExperienceModal.astro";
-import { Section } from "@sections/index";
-import { Accordion } from "@accordion/index";
+import type { I18nTFunction } from "@types";
 import getCVData from "@utils/cv";
-import CompanyCard from "@sections/experience/company/card/CompanyCard.astro";
 
 interface Props {
-  t: (key: string, options?: any) => string;
-  locale: string
+  t: I18nTFunction;
+  locale: string;
 }
 
 const { t, locale } = Astro.props;
@@ -15,11 +12,11 @@ const cvData = await getCVData(locale);
 const { work, projects } = cvData;
 
 // Extraer los nombres de las empresas de las experiencias laborales
-const companyNames = work.map(exp => exp.name.split(" - ")[0]);
+const companyNames = work.map((exp) => exp.name.split(" - ")[0]);
 
 // Agrupar experiencias laborales por empresa
 const groupedWork = {};
-work.forEach(exp => {
+work.forEach((exp) => {
   const companyName = exp.name.split(" - ")[0];
   if (!groupedWork[companyName]) {
     groupedWork[companyName] = [];
@@ -29,28 +26,29 @@ work.forEach(exp => {
 
 // Agrupar proyectos por empresa
 const groupedProjects = {};
-projects.forEach(project => {
+projects.forEach((project) => {
   let matchedCompany = "";
   for (const companyName of companyNames) {
-    if (project.company === companyName || 
-        project.company.includes(companyName) || 
-        companyName.includes(project.company)) {
+    if (
+      project.company === companyName ||
+      project.company.includes(companyName) ||
+      companyName.includes(project.company)
+    ) {
       matchedCompany = companyName;
       break;
     }
   }
-  
+
   if (!matchedCompany) {
     matchedCompany = project.company;
   }
-  
+
   if (!groupedProjects[matchedCompany]) {
     groupedProjects[matchedCompany] = [];
   }
-  
+
   groupedProjects[matchedCompany].push(project);
 });
-
 ---
 
 <Section>

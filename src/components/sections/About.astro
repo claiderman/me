@@ -1,20 +1,23 @@
 ---
-import { Section } from "@sections/index";
+import type { I18nTFunction } from "@types";
 import getCVData from "../../utils/cv";
 
 interface Props {
-  t: (key: string, options?: any) => string;
-  locale: string
+  t: I18nTFunction;
+  locale: string;
 }
 
 const { t, locale } = Astro.props;
-const cvData = await getCVData(locale)
-const { summary } = cvData.basics
+const cvData = await getCVData(locale);
+const { summary, personalMission } = cvData.basics;
 ---
 
 <Section title={`<i class='fas fa-id-card'></i> ${t('sections.about')}`}>
   <div class="about-content">
-    <p>{summary}</p>
+    <p class="summary">{summary}</p>
+    {personalMission && (
+      <p class="mission">{personalMission}</p>
+    )}
   </div>
 </Section>
 
