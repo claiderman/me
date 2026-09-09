@@ -24,12 +24,27 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
   <div class="container">
     <div class="top-section">
       <figure>
-        <img src={image} alt={name} />
+        <img
+          src={image}
+          alt={name}
+          loading="lazy"
+          width={150}
+          height={150}
+          decoding="async"
+        />
       </figure>
       <div class="name-section">
         <div class="name-logo">
           <h1>{name}</h1>
-          <img src="/me/logo.svg" alt="Logo JL" class="logo" />
+          <img
+            src="/me/logo.svg"
+            alt="Logo JL"
+            class="logo"
+            loading="lazy"
+            width={40}
+            height={40}
+            decoding="async"
+          />
         </div>
         <h2>{label}</h2>
       </div>
