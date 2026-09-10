@@ -36,6 +36,10 @@ const langCode = effectiveLocale.toUpperCase();
   <button class="cv-download-btn" id="cv-download-btn" title="Descargar CV" data-name={name}>
     <i class="fas fa-file-download"></i>
   </button>
+  <div class="cv-lang-panel" id="cv-lang-panel">
+    <div class="cv-lang-option" data-locale="es">Español</div>
+    <div class="cv-lang-option" data-locale="en">English</div>
+  </div>
 
   <button class="color-picker-btn" id="color-picker-btn">
     <i class="fas fa-palette"></i>
@@ -254,6 +258,50 @@ const langCode = effectiveLocale.toUpperCase();
     }
   }
 
+  .cv-lang-panel {
+    position: absolute;
+    right: 50px;
+    top: 5px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 3px 8px var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    min-width: 120px;
+  }
+
+  .cv-lang-panel.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  .cv-lang-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+
+  .cv-lang-option:hover {
+    background: var(--bg-hover);
+  }
+
+  .cv-lang-option.selected {
+    background: var(--primary);
+    color: white;
+  }
+
   @media (max-width: 768px) {
     .floating-buttons {
       right: 1rem;
@@ -322,6 +370,13 @@ const langCode = effectiveLocale.toUpperCase();
     .color-option {
       width: 25px;
       height: 25px;
+    }
+
+    .cv-lang-panel {
+      right: calc(100% + 10px);
+      left: auto;
+      top: 0;
+      bottom: auto;
     }
   }
 
@@ -490,14 +545,30 @@ const langCode = effectiveLocale.toUpperCase();
       });
     }
 
-    // CV Download button
+    // CV Download button - shows language selection panel
     const cvDownloadBtn = document.getElementById('cv-download-btn');
-    if (cvDownloadBtn) {
+    const cvLangPanel = document.getElementById('cv-lang-panel');
+    if (cvDownloadBtn && cvLangPanel) {
       cvDownloadBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const locale = getCurrentLocale();
-        const name = cvDownloadBtn.dataset.name || 'cv';
-        downloadCV(name, locale);
+        cvLangPanel.classList.toggle('show');
+      });
+
+      document.querySelectorAll('.cv-lang-option').forEach(option => {
+        option.addEventListener('click', () => {
+          document.querySelectorAll('.cv-lang-option').forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+          const locale = option.dataset.locale;
+          const name = cvDownloadBtn.dataset.name || 'cv';
+          downloadCV(name, locale);
+          cvLangPanel.classList.remove('show');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!cvDownloadBtn.contains(event.target) && !cvLangPanel.contains(event.target)) {
+          cvLangPanel.classList.remove('show');
+        }
       });
     }
 
