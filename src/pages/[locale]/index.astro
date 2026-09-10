@@ -1,11 +1,17 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { loadTranslations } from "@i18n/utils";
-import { EducationSection, ExperienceSection, SkillsSection, LanguagesSection, TestimonialsSection } from "@sections/index";
-import { ScrollToTopButton, FloatingButtons } from "@buttons/index";
+import { FloatingButtons, ScrollToTopButton } from "@buttons/index";
 import TimelineNav from "@components/TimelineNav.astro";
+import { loadTranslations } from "@i18n/utils";
+import Layout from "@layouts/Layout.astro";
 import About from "@sections/About.astro";
 import Hero from "@sections/Hero.astro";
+import {
+  EducationSection,
+  ExperienceSection,
+  LanguagesSection,
+  SkillsSection,
+  TestimonialsSection,
+} from "@sections/index";
 import getCVData from "@utils/cv";
 import "../../styles/global.css";
 

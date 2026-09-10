@@ -19,7 +19,7 @@
       "preset": "recommended"
     }
   },
-"overrides": [
+  "overrides": [
     {
       "includes": ["**/*.astro"],
       "linter": {

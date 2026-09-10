@@ -23,7 +23,7 @@ const paths = {
   "@scripts/*": "src/scripts/*",
   "@i18n/*": "src/i18n/*",
   "@icons/*": "src/icons/*",
-  "@globalStyles/*": "src/styles/global.css"
+  "@globalStyles/*": "src/styles/global.css",
 };
 
 export default defineConfig({
@@ -31,8 +31,8 @@ export default defineConfig({
   base: "/me",
   vite: {
     resolve: {
-      alias: paths
-    }
+      alias: paths,
+    },
   },
   integrations: [astroI18next()],
 });
