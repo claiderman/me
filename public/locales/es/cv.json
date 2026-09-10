@@ -2,7 +2,7 @@
   "basics": {
     "name": "Claiderman Alexander Lozano Cardona",
     "label": "Desarrollador Backend con experiencia en Microservicios y Cloud",
-    "summary": "Desarrollador Backend con más de 4 años de experiencia en desarrollo de software. Tiene conocimientos en Java, TypeScript, Python y servicios cloud (AWS, Azure). Ha trabajado implementando APIs REST, gestionando bases de datos y desplegando soluciones en la nube. Ha tenido la oportunidad de contribuir en proyectos para clientes como Bancolombia, Banistmo y Grupo Familia, y actualmente trabaja en el desarrollo de backends para videojuegos y aplicaciones interactivas en Polygonus. Le gusta aprender continuamente y adaptarse a nuevas tecnologías.",
+    "summary": "Desarrollador Backend con más de 6 años de experiencia en desarrollo de software. Tiene conocimientos en Java, TypeScript, Python y servicios cloud (AWS, Azure). Ha trabajado implementando APIs REST, gestionando bases de datos y desplegando soluciones en la nube. Ha tenido la oportunidad de contribuir en proyectos para clientes como Bancolombia, Banistmo y Grupo Familia, y actualmente trabaja en el desarrollo de backends para videojuegos y aplicaciones interactivas en Polygonus. Le gusta aprender continuamente y adaptarse a nuevas tecnologías.",
     "location": {
       "city": "Medellín",
       "department": "Antioquia",
@@ -14,7 +14,7 @@
     {
       "name": "Polygonus",
       "position": "Desarrollador Backend",
-      "summary": "Desarrolla backend para proyectos de videojuegos y aplicaciones interactivas, implementando arquitecturas serverless y soluciones cloud. Trabaja con clientes como Futureverse, Comfama y Fanta, desarrollando microservicios escalables y optimizando rendimiento en entornos de alta concurrencia.",
+      "summary": "Desarrolla arquitecturas serverless y soluciones backend para videojuegos y aplicaciones interactivas de alta concurrencia. Optimiza el rendimiento de servicios críticos en entornos de alta carga. Participa en plataforma web + LMS de artes digitales, videojuegos e IA. Trabaja con Futureverse, Comfama y Fanta.",
       "highlights": [
         "Diseña e implementa arquitecturas serverless con TypeScript y AWS Lambda",
         "Desarrolla APIs con Python (Django/FastAPI) para plataformas educativas",
@@ -26,7 +26,7 @@
     {
       "name": "Pragma",
       "position": "Desarrollador de Software",
-      "summary": "Desarrolló microservicios y APIs REST para clientes del sector financiero y retail, utilizando principalmente Java con Spring Framework. Participó activamente en la arquitectura de soluciones cloud en AWS y Azure, implementando prácticas DevOps y metodologías ágiles (SCRUM/KANBAN).",
+      "summary": "Desarrolló microservicios y APIs REST para clientes financiero y retail (Bancolombia, Banistmo, Grupo Familia) con Java y Spring Boot. Diseño e implementación cloud en AWS y Azure, DevOps (CI/CD) y ágiles (Scrum y Kanban).",
       "highlights": [
         "Lideró el desarrollo backend para la aplicación móvil Nosotras V-App, aplicando arquitectura de microservicios",
         "Implementó sistemas de auditoría y logging para aplicaciones bancarias en Bancolombia",
@@ -73,6 +73,12 @@
     }
   ],
   "education": [
+    {
+      "institution": "Politécnico Grancolombiano",
+      "area": "Ingeniería de Software",
+      "studyType": "Pregrado (aplazado)",
+      "score": "Aplazado"
+    },
     {
       "institution": "Sena",
       "area": "Tecnólogo en Análisis y Desarrollo de Sistemas de Información",
@@ -133,7 +139,7 @@
     },
     {
       "name": "Frameworks",
-      "keywords": ["Spring Framework", "FastAPI", "Django"]
+      "keywords": ["Spring Framework", "FastAPI", "Django", "Node.js"]
     },
     {
       "name": "Bases de Datos",
@@ -148,7 +154,7 @@
     },
     {
       "name": "Servicios Cloud",
-      "keywords": ["AWS"]
+      "keywords": ["AWS", "Azure"]
     },
     {
       "name": "Mensajería",
@@ -161,8 +167,11 @@
         "Kubernetes",
         "CI/CD",
         "Azure DevOps",
+        "Azure Serverless",
+        "Unity DevOps",
         "Jenkins",
-        "GitHub Actions"
+        "GitHub Actions",
+        "Git"
       ]
     },
     {

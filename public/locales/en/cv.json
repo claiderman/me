@@ -2,7 +2,7 @@
   "basics": {
     "name": "Claiderman Alexander Lozano Cardona",
     "label": "Backend Developer with Microservices and Cloud Experience",
-    "summary": "Backend Developer with over 4 years of experience in software development. Proficient in Java, TypeScript, Python, and cloud services (AWS, Azure). Has worked implementing REST APIs, managing databases, and deploying cloud solutions. Has contributed to projects for clients like Bancolombia, Banistmo, and Grupo Familia, and currently works on backend development for video games and interactive applications at Polygonus. Enjoys continuous learning and adapting to new technologies.",
+    "summary": "Backend Developer with over 6 years of experience in software development. Proficient in Java, TypeScript, Python, and cloud services (AWS, Azure). Has worked implementing REST APIs, managing databases, and deploying cloud solutions. Has contributed to projects for clients like Bancolombia, Banistmo, and Grupo Familia, and currently works on backend development for video games and interactive applications at Polygonus. Enjoys continuous learning and adapting to new technologies.",
     "location": {
       "city": "Medellín",
       "department": "Antioquia",
@@ -14,7 +14,7 @@
     {
       "name": "Polygonus",
       "position": "Backend Developer",
-      "summary": "Develops backend for video game projects and interactive applications, implementing serverless architectures and cloud solutions. Works with clients like Futureverse, Comfama, and Fanta, developing scalable microservices and optimizing performance in high-concurrency environments.",
+      "summary": "Develops serverless architectures and backend solutions for high-concurrency games and interactive apps. Optimizes critical services under high load. Web platform + LMS for digital arts, games and AI. Works with Futureverse, Comfama and Fanta.",
       "highlights": [
         "Designs and implements serverless architectures with TypeScript and AWS Lambda",
         "Develops APIs with Python (Django/FastAPI) for educational platforms",
@@ -26,7 +26,7 @@
     {
       "name": "Pragma",
       "position": "Software Developer",
-      "summary": "Developed microservices and REST APIs for financial and retail sector clients, primarily using Java with Spring Framework. Actively participated in cloud solution architecture on AWS and Azure, implementing DevOps practices and agile methodologies (SCRUM/KANBAN).",
+      "summary": "Developed microservices and REST APIs for financial and retail clients (Bancolombia, Banistmo, Grupo Familia) with Java and Spring Boot. Cloud design on AWS and Azure, DevOps (CI/CD), Scrum and Kanban.",
       "highlights": [
         "Led backend development for Nosotras V-App mobile application, applying microservices architecture",
         "Implemented audit and logging systems for banking applications at Bancolombia",
@@ -73,6 +73,12 @@
     }
   ],
   "education": [
+    {
+      "institution": "Politecnico Grancolombiano",
+      "area": "Software Engineering",
+      "studyType": "Bachelor (postponed)",
+      "score": "Postponed"
+    },
     {
       "institution": "Sena",
       "area": "Technologist in Information Systems Analysis and Development",
@@ -133,7 +139,7 @@
     },
     {
       "name": "Frameworks",
-      "keywords": ["Spring Framework", "FastAPI", "Django"]
+      "keywords": ["Spring Framework", "FastAPI", "Django", "Node.js"]
     },
     {
       "name": "Databases",
@@ -148,7 +154,7 @@
     },
     {
       "name": "Cloud Services",
-      "keywords": ["AWS"]
+      "keywords": ["AWS", "Azure"]
     },
     {
       "name": "Messaging",
@@ -161,8 +167,11 @@
         "Kubernetes",
         "CI/CD",
         "Azure DevOps",
+        "Azure Serverless",
+        "Unity DevOps",
         "Jenkins",
-        "GitHub Actions"
+        "GitHub Actions",
+        "Git"
       ]
     },
     {

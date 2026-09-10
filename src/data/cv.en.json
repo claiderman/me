@@ -6,7 +6,7 @@
     "email": "claiderman.lozano@gmail.com",
     "phone": "+573014128547",
     "url": "https://github.com/claiderman",
-    "summary": "Backend engineer with 4+ years of experience building scalable serverless systems and cloud architectures. Currently at Polygonus, I develop backends for video games and interactive applications, implementing serverless APIs on AWS Lambda that support thousands of concurrent users. My work spans from REST APIs and progression systems for games to audit systems for the financial sector, serving clients like Bancolombia, Banistmo, and Grupo Familia. Passionate about solving backend performance challenges and building systems that scale effortlessly. Growing in English proficiency and always learning new technologies.",
+    "summary": "Backend engineer with over 6 years of experience building scalable serverless systems and cloud architectures. Currently at Polygonus, I develop backends for video games and interactive applications, implementing serverless APIs on AWS Lambda that support thousands of concurrent users. My work spans from REST APIs and progression systems for games to audit systems for the financial sector, serving clients like Bancolombia, Banistmo, and Grupo Familia. Passionate about solving backend performance challenges and building systems that scale effortlessly. Growing in English proficiency and always learning new technologies.",
     "personalMission": "I transform complex technical challenges into elegant serverless solutions. I believe a great backend should be scalable, maintainable, and virtually invisible to the user. I'm seeking to collaborate on innovative gaming or interactive applications where I can apply my expertise in cloud architectures and TypeScript. Always open to discussing how I can add value to your team.",
     "location": {
       "address": "",
@@ -36,7 +36,7 @@
       "url": "https://www.polygon.us/",
       "startDate": "2024-03-11",
       "endDate": null,
-      "summary": "Develops backends for video game and interactive applications, implementing serverless architectures and cloud solutions. Works with clients such as Futureverse, Comfama and Fanta, developing scalable microservices and optimizing performance in high concurrency environments.",
+      "summary": "Develops serverless architectures and backend solutions for high-concurrency video game and interactive application projects. Optimizes performance of critical services in high-load environments. Participates in development and maintenance of web platform + LMS for digital arts, game development and AI training. Works with clients like Futureverse, Comfama and Fanta.",
       "highlights": [
         "Designs and implements serverless architectures with TypeScript and AWS Lambda for applications supporting hundreds of concurrent users",
         "Develops APIs with Python (FastAPI) for educational platforms, achieving <100ms latency on 95% of requests",
@@ -52,7 +52,7 @@
       "url": "https://www.pragma.co/es/",
       "startDate": "2020-08-03",
       "endDate": "2023-10-17",
-      "summary": "Developed microservices and REST APIs for financial and retail sector clients, mainly using Java with Spring Framework. Actively participated in cloud solution architecture in AWS and Azure, implementing DevOps practices and agile methodologies (SCRUM/KANBAN).",
+      "summary": "Developed microservices and REST APIs for financial and retail clients (Bancolombia, Banistmo, Grupo Familia) using Java and Spring Boot. Participated in design and implementation of cloud solutions on AWS and Azure, integrating DevOps (CI/CD) and agile methodologies (Scrum and Kanban).",
       "highlights": [
         "Led the backend development for the Nosotras V-App mobile application with microservices architecture, supporting 50K+ active users",
         "Implemented auditing and logging systems for banking applications in Bancolombia, processing 10K+ daily events with compliance requirements",
@@ -108,6 +108,20 @@
     }
   ],
   "education": [
+    {
+      "institution": "Politecnico Grancolombiano",
+      "url": "https://www.poli.edu.co/",
+      "area": "Software Engineering",
+      "studyType": "Bachelor (postponed)",
+      "startDate": "2022-01-01",
+      "endDate": null,
+      "score": "Postponed",
+      "courses": [
+        "Software Engineering Fundamentals",
+        "Programming",
+        "Databases"
+      ]
+    },
     {
       "institution": "Sena",
       "url": "https://oferta.senasofiaplus.edu.co/sofia-oferta/",
@@ -183,7 +197,7 @@
     },
     {
       "name": "Frameworks",
-      "keywords": ["Spring Framework", "FastAPI", "Django"]
+      "keywords": ["Spring Framework", "FastAPI", "Django", "Node.js"]
     },
     {
       "name": "Databases",
@@ -198,7 +212,7 @@
     },
     {
       "name": "Cloud Services",
-      "keywords": ["AWS"]
+      "keywords": ["AWS", "Azure"]
     },
     {
       "name": "Messaging",
@@ -211,8 +225,11 @@
         "Kubernetes",
         "CI/CD",
         "Azure DevOps",
+        "Azure Serverless",
+        "Unity DevOps",
         "Jenkins",
-        "GitHub Actions"
+        "GitHub Actions",
+        "Git"
       ]
     },
     {
