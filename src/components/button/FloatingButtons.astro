@@ -10,7 +10,8 @@ interface Props {
 
 const { t, locale, name } = Astro.props;
 const effectiveLocale: Locale = locale || defaultLocale;
-const _langCode = effectiveLocale.toUpperCase();
+const langCode = effectiveLocale.toUpperCase();
+const localeFlags: Record<Locale, string> = { es: "🇪🇸", en: "🇬🇧" };
 ---
 
 <div class="floating-buttons">

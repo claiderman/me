@@ -2,6 +2,7 @@
 import { getInitialTheme } from "../components/theme/script/theme";
 import "../components/modal/styles/modal-tabs.css";
 import getCVData from "@utils/cv";
+import { ClientInit } from "@client/index";
 import "@globalStyles/global.css";
 
 interface Props {
@@ -60,7 +61,8 @@ const initialTheme = getInitialTheme();
     <meta name="twitter:image:alt" content={name} />
 
     {/* JSON-LD Structured Data - Person */}
-    <script type="application/ld+json" innerHTML={JSON.stringify({
+     <script type="application/ld+json">
+{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
       "name": name,

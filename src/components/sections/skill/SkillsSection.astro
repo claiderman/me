@@ -1,4 +1,7 @@
 ---
+import Section from "@sections/Section.astro";
+import { Accordion } from "@accordion/index";
+import SkillCard from "./card/SkillCard.astro";
 import type { I18nTFunction } from "@types";
 import getCVData from "@utils/cv";
 
@@ -11,7 +14,7 @@ const { t, locale } = Astro.props;
 const cvData = await getCVData(locale);
 const { skills } = cvData;
 
-const _SKILLS_ICONS: Record<string, string> = {
+const SKILLS_ICONS: Record<string, string> = {
   HTML: `<i class="fab fa-html5"></i>`,
   CSS: `<i class="fab fa-css3-alt"></i>`,
   JavaScript: `<i class="fab fa-js"></i>`,
@@ -85,7 +88,7 @@ const _SKILLS_ICONS: Record<string, string> = {
 };
 
 // Mapeo de nombres de habilidades a claves de iconos
-const _SKILL_NAME_TO_ICON: Record<string, string> = {
+const SKILL_NAME_TO_ICON: Record<string, string> = {
   HTML: "HTML",
   CSS: "CSS",
   JavaScript: "JavaScript",

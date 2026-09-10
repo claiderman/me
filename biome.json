@@ -19,13 +19,14 @@
       "preset": "recommended"
     }
   },
-  "overrides": [
+"overrides": [
     {
       "includes": ["**/*.astro"],
       "linter": {
         "rules": {
           "correctness": {
-            "noUnusedVariables": "off"
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
           }
         }
       }
