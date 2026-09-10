@@ -3,9 +3,10 @@ interface Props {
   id: string;
   title: string;
   subtitle?: string;
+  closeLabel?: string;
 }
 
-const { id, title, subtitle } = Astro.props;
+const { id, title, subtitle, closeLabel = "Cerrar" } = Astro.props;
 ---
 
 <div id={id} class="modal" role="dialog" aria-modal="true">
@@ -32,7 +33,7 @@ const { id, title, subtitle } = Astro.props;
     </div>
     <div class="modal-footer">
       <button class="close-modal-button">
-        Cerrar
+        {closeLabel}
       </button>
     </div>
     
@@ -43,10 +44,13 @@ const { id, title, subtitle } = Astro.props;
   </div>
 </div>
 
-<script client:load>
+<script>
   function initModal(modalId: string) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
+    // Evita doble inicialización (DOMContentLoaded + astro:page-load)
+    if (modal.dataset.initModal === "true") return;
+    modal.dataset.initModal = "true";
 
     const closeBtn = modal.querySelector('.close-modal');
     const closeModalBtn = modal.querySelector('.close-modal-button');
@@ -244,11 +248,19 @@ const { id, title, subtitle } = Astro.props;
   }
 
   // Inicializar todos los modales al cargar la página
-  document.addEventListener('DOMContentLoaded', () => {
+  function initAllModals() {
     document.querySelectorAll('.modal').forEach(modal => {
       if (modal.id) {
         initModal(modal.id);
       }
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllModals);
+  } else {
+    initAllModals();
+  }
+  // Re-inicializa tras navegaciones con View Transitions
+  document.addEventListener('astro:page-load', initAllModals);
 </script> 

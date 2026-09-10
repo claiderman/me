@@ -5,6 +5,7 @@ interface Props {
   class?: string;
   showIcon?: boolean;
   variant?: "primary" | "secondary" | "outline";
+  presentLabel?: string;
 }
 
 const {
@@ -13,9 +14,10 @@ const {
   class: className = "",
   showIcon = true,
   variant = "primary",
+  presentLabel = "Actual",
 } = Astro.props;
 
-const displayEndYear = endYear || "Actual";
+const displayEndYear = endYear || presentLabel;
 const sameYear = startYear === endYear && endYear !== undefined;
 
 const getVariantClass = () => {

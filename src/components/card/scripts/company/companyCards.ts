@@ -32,9 +32,13 @@ function setupCompanyCards() {
       const companyUrl = groupedWork[company][0]?.url;
 
       if (companyUrl) {
+        const visitLabel =
+          document.documentElement.lang === "en"
+            ? "Visit website of"
+            : "Visitar sitio web de";
         modalTitle.innerHTML = `
           ${company}
-          <a href="${companyUrl}" target="_blank" class="company-link" title="Visitar sitio web de ${company}">
+          <a href="${companyUrl}" target="_blank" class="company-link" title="${visitLabel} ${company}">
             <i class="fas fa-external-link-alt"></i>
           </a>
         `;
@@ -109,6 +113,29 @@ function setupCompanyCards() {
 }
 
 function updateModalContent(modalBody, experiences, projects, _company) {
+  const isEnglish =
+    typeof document !== "undefined" && document.documentElement.lang === "en";
+  const STR = isEnglish
+    ? {
+        experience: "Experience",
+        projects: "Projects",
+        highlights: "Achievements & Responsibilities",
+        client: "Client:",
+        noProjects: "No projects available for this company.",
+        present: "Present",
+        viewProject: "View project",
+        visitSite: "Visit website of",
+      }
+    : {
+        experience: "Experiencia",
+        projects: "Proyectos",
+        highlights: "Logros y Responsabilidades",
+        client: "Cliente:",
+        noProjects: "No hay proyectos disponibles para esta empresa.",
+        present: "Actual",
+        viewProject: "Ver proyecto",
+        visitSite: "Visitar sitio web de",
+      };
   // Primero obtenemos los iconos de habilidades para reutilizarlos
   const getSkillIcons = () => {
     const skillsIcons: Record<string, string> = {
@@ -191,11 +218,11 @@ function updateModalContent(modalBody, experiences, projects, _company) {
         <div class="tab-buttons">
           <button class="tab-button active" data-tab="experience">
             <i class="fas fa-briefcase"></i>
-            <span>Experiencia</span>
+            <span>${STR.experience}</span>
           </button>
           <button class="tab-button ${projects.length === 0 ? "disabled" : ""}" data-tab="projects">
             <i class="fas fa-code"></i>
-            <span>Proyectos</span>
+            <span>${STR.projects}</span>
             ${projects.length > 0 ? `<span class="badge">${projects.length}</span>` : ""}
           </button>
         </div>
@@ -208,7 +235,7 @@ function updateModalContent(modalBody, experiences, projects, _company) {
                 const startYear = new Date(exp.startDate).getFullYear();
                 const endYear = exp.endDate
                   ? new Date(exp.endDate).getFullYear()
-                  : "Actual";
+                  : STR.present;
 
                 return `
                 <div class="accordion-item">
@@ -230,7 +257,7 @@ function updateModalContent(modalBody, experiences, projects, _company) {
                         <p>${exp.summary}</p>
                       </div>
                       <div class="highlights-card">
-                        <h4>Logros y Responsabilidades</h4>
+                        <h4>${STR.highlights}</h4>
                         <ul>
                           ${exp.highlights
                             .map(
@@ -266,7 +293,7 @@ function updateModalContent(modalBody, experiences, projects, _company) {
                       ${
                         project.url
                           ? `
-                        <a href="${project.url}" target="_blank" title="Ver proyecto ${project.name}">
+                        <a href="${project.url}" target="_blank" title="${STR.viewProject} ${project.name}">
                           ${project.name}
                         </a>
                       `
@@ -280,7 +307,7 @@ function updateModalContent(modalBody, experiences, projects, _company) {
                         ? `
                       <div class="year-badge">
                         <i class="fas fa-calendar-alt"></i>
-                        <time>${project.startYear} - ${project.endYear || "Actual"}</time>
+                        <time>${project.startYear} - ${project.endYear || STR.present}</time>
                       </div>
                     `
                         : ""
@@ -290,7 +317,7 @@ function updateModalContent(modalBody, experiences, projects, _company) {
                     project.client
                       ? `
                     <div class="project-client">
-                      <span class="client-label">Cliente:</span>
+                      <span class="client-label">${STR.client}</span>
                       <span class="client-value">${project.client}</span>
                     </div>
                   `
@@ -319,7 +346,7 @@ function updateModalContent(modalBody, experiences, projects, _company) {
           `
               : `
             <div class="no-projects">
-              <p>No hay proyectos disponibles para esta empresa.</p>
+              <p>${STR.noProjects}</p>
             </div>
           `
           }

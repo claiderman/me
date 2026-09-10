@@ -11,7 +11,6 @@ interface Props {
 const { t, locale, name } = Astro.props;
 const effectiveLocale: Locale = locale || defaultLocale;
 const langCode = effectiveLocale.toUpperCase();
-const localeFlags: Record<Locale, string> = { es: "🇪🇸", en: "🇬🇧" };
 ---
 
 <div class="floating-buttons">
@@ -30,7 +29,6 @@ const localeFlags: Record<Locale, string> = { es: "🇪🇸", en: "🇬🇧" };
       class="language-switcher-btn"
       id="language-switcher-btn"
     >
-      <span class="lang-flag">{localeFlags[effectiveLocale]}</span>
       <span class="lang-code">{langCode}</span>
     </button>
   </div>
@@ -325,15 +323,71 @@ const localeFlags: Record<Locale, string> = { es: "🇪🇸", en: "🇬🇧" };
   }
 </style>
 
-<script client:load>
+<script>
+  import { navigate } from "astro:transitions/client";
+
   function switchLanguage(newLang) {
     const basePath = '/me';
     const segments = window.location.pathname.replace(basePath, '').split('/').filter(Boolean);
     if (['es', 'en'].includes(segments[0])) {
       segments.shift();
     }
-    const newPath = basePath + '/' + newLang + (segments.length > 0 ? '/' + segments.join('/') : '');
-    window.location.href = newPath;
+    const rest = segments.length > 0 ? '/' + segments.join('/') : '';
+    const url = basePath + '/' + newLang + rest + '/';
+    // Guarda la sección visible para restaurarla tras el cambio (no mandar al inicio)
+    try {
+      sessionStorage.setItem('lang-scroll-target', getCurrentSectionId());
+    } catch (e) {}
+    // SPA swap sin recarga dura; fallback a navegación clásica
+    try {
+      navigate(url);
+    } catch {
+      window.location.href = url;
+    }
+  }
+
+  // Id de la sección de <main> más cercana a la parte visible
+  function getCurrentSectionId() {
+    var sections = document.querySelectorAll('main section[id]');
+    var current = '';
+    var offset = 140;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= offset) {
+        current = sections[i].id;
+      }
+    }
+    return current || (sections.length > 0 ? sections[0].id : '');
+  }
+
+  // Restaura la sección guardada al llegar desde un cambio de idioma
+  function restoreSectionAfterLanguageSwitch() {
+    var target = null;
+    try {
+      target = sessionStorage.getItem('lang-scroll-target');
+      sessionStorage.removeItem('lang-scroll-target');
+    } catch (e) {}
+    if (!target) return;
+    var scrollToTarget = function () {
+      var el = document.getElementById(target);
+      if (el) el.scrollIntoView({ block: 'start' });
+    };
+    requestAnimationFrame(function () {
+      setTimeout(scrollToTarget, 60);
+    });
+  }
+
+  // Pre-carga el HTML del otro idioma (una vez) para que el cambio sea instantáneo
+  var prefetchedLocale = null;
+  function prefetchAlternateLocale(currentLocale) {
+    var target = currentLocale === 'es' ? 'en' : 'es';
+    if (prefetchedLocale === target) return;
+    prefetchedLocale = target;
+    try {
+      var link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = '/me/' + target + '/';
+      document.head.appendChild(link);
+    } catch (e) {}
   }
 
   function darkenColor(color, percent) {
@@ -383,14 +437,32 @@ const localeFlags: Record<Locale, string> = { es: "🇪🇸", en: "🇬🇧" };
     document.body.removeChild(link);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function initFloatingButtons() {
+    // Evita doble inicialización sobre el mismo DOM.
+    // El contenedor es nuevo en cada página/swap.
+    var container = document.querySelector('.floating-buttons');
+    if (!container || container.getAttribute('data-fb-init') === '1') return;
+    container.setAttribute('data-fb-init', '1');
     const currentLocale = getCurrentLocale();
+    // Sincroniza la preferencia guardada con el locale real de la URL
+    localStorage.setItem('locale', currentLocale);
+
+    // Vuelve a la sección donde estaba el usuario si viene de un cambio de idioma
+    restoreSectionAfterLanguageSwitch();
+
+    // Pre-carga la ruta del otro idioma para un cambio instantáneo
+    prefetchAlternateLocale(currentLocale);
 
     // Restore theme from localStorage
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle && themeToggle instanceof HTMLInputElement) {
       const savedTheme = localStorage.getItem('theme');
       const isDark = savedTheme === 'dark' || (!savedTheme && document.documentElement.classList.contains('dark'));
+      // Aplica el tema guardado de inmediato para que no se pierda al cambiar de idioma
+      const appliedTheme = isDark ? 'dark' : 'light';
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(appliedTheme);
+      if (!savedTheme) localStorage.setItem('theme', appliedTheme);
       themeToggle.checked = isDark;
       themeToggle.addEventListener('change', () => {
         const current = themeToggle.checked ? 'dark' : 'light';
@@ -454,5 +526,13 @@ const localeFlags: Record<Locale, string> = { es: "🇪🇸", en: "🇬🇧" };
         }
       });
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFloatingButtons);
+  } else {
+    initFloatingButtons();
+  }
+  // Re-inicializa tras navegaciones con View Transitions
+  document.addEventListener('astro:page-load', initFloatingButtons);
 </script>

@@ -1,5 +1,6 @@
 ---
 import { getInitialTheme } from "../components/theme/script/theme";
+import { ClientRouter } from "astro:transitions";
 import "../components/modal/styles/modal-tabs.css";
 import { ClientInit } from "@client/index";
 import getCVData from "@utils/cv";
@@ -27,6 +28,19 @@ const initialTheme = getInitialTheme();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content={name} />
     <meta name="format-detection" content="telephone=no" />
+    <ClientRouter />
+    {/* Aplica el tema guardado antes del primer pintado (evita flash y lo preserva entre idiomas) */}
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(saved);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <meta name="theme-color" content="#4a5568" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#B22222" media="(prefers-color-scheme: dark)" />
 

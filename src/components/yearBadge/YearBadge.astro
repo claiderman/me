@@ -4,6 +4,7 @@ interface Props {
   endYear?: string | number;
   class?: string;
   showIcon?: boolean;
+  presentLabel?: string;
 }
 
 const {
@@ -11,9 +12,10 @@ const {
   endYear,
   class: className = "",
   showIcon = true,
+  presentLabel = "Actual",
 } = Astro.props;
 
-const displayEndYear = endYear || "Actual";
+const displayEndYear = endYear || presentLabel;
 const sameYear = startYear === endYear && endYear !== undefined;
 ---
 

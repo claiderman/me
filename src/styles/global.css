@@ -4,6 +4,13 @@
 @import url("@accordion/styles/accordion.css");
 @import url("@modal/styles/modal.css");
 
+/* Cambio de idioma instantáneo: sin fundido de View Transitions */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation: none !important;
+}
+
 :root {
   /* Light theme variables - Colores más suaves */
   --background: #e4eaf0; /* Azul muy claro */

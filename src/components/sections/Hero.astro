@@ -169,17 +169,6 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         </div>
       )
     }
-    <div class="contact-item download-cv">
-      <a
-        href={`/me/locales/${locale}/cv.pdf`}
-        download
-        class="download-cv-btn"
-        title={t('hero.downloadCV')}
-      >
-        <i class="fas fa-download"></i>
-        <span>{t('hero.downloadCV')}</span>
-      </a>
-    </div>
   </div>
 </Section>
 
@@ -397,31 +386,6 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
     transform: scale(1.1);
   }
 
-  .download-cv {
-    margin-top: 8px;
-  }
-
-  .download-cv-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    background: var(--primary);
-    color: white;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  .download-cv-btn:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
   @media (width <= 700px) {
     .top-section {
       flex-direction: column;
@@ -479,7 +443,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
   }
 </style>
 
-<script client:load>
+<script>
   declare global {
     interface Window {
       copyToClipboard: (text: string) => void;

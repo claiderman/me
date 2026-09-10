@@ -14,6 +14,11 @@ interface Props {
 const { t, locale } = Astro.props;
 const cvData = await getCVData(locale);
 const { work, projects } = cvData;
+const isEnglish = locale === "en";
+const viewExperienceLabel = isEnglish ? "View experience" : "Ver experiencia";
+const presentLabel = isEnglish ? "Present" : "Actual";
+const modalTitle = isEnglish ? "Work Experience" : "Experiencia Laboral";
+const modalCloseLabel = isEnglish ? "Close" : "Cerrar";
 
 // Extraer los nombres de las empresas de las experiencias laborales
 const companyNames = work.map((exp) => exp.name.split(" - ")[0]);
@@ -73,6 +78,8 @@ projects.forEach((project) => {
               company={company}
               startYear={startYear}
               endYear={endYear}
+              viewLabel={viewExperienceLabel}
+              presentLabel={presentLabel}
             />
           );
         })
@@ -81,7 +88,7 @@ projects.forEach((project) => {
   </Accordion>
 </Section>
 
-<ExperienceModal />
+<ExperienceModal title={modalTitle} closeLabel={modalCloseLabel} />
 
 <div
   id="grouped-work-data"

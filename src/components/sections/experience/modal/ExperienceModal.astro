@@ -1,6 +1,13 @@
 ---
 import Modal from "../../../modal/Modal.astro";
+
+interface Props {
+  title?: string;
+  closeLabel?: string;
+}
+
+const { title = "Experiencia Laboral", closeLabel = "Cerrar" } = Astro.props;
 ---
-<Modal id="experience-modal" title="Experiencia Laboral">
+<Modal id="experience-modal" title={title} closeLabel={closeLabel}>
   <!-- El contenido del modal será populado dinámicamente con JavaScript -->
 </Modal>

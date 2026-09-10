@@ -13,6 +13,10 @@ interface Props {
 const { t, locale } = Astro.props;
 const cvData = await getCVData(locale);
 const { education } = cvData;
+const isEnglish = locale === "en";
+const viewLabel = isEnglish ? "View institution" : "Ver institución";
+const presentLabel = isEnglish ? "Present" : "Actual";
+const inLabel = isEnglish ? "in" : "en";
 ---
 
 <Section>
@@ -21,9 +25,9 @@ const { education } = cvData;
       {
         education.map(
           ({ institution, area, studyType, startDate, endDate, url, score }) => {
-            const startYear = new Date(startDate).getFullYear()
+            const startYear = new Date(startDate).getFullYear();
             const endYear =
-              endDate != null ? new Date(endDate).getFullYear() : "Actual"
+              endDate != null ? new Date(endDate).getFullYear() : presentLabel;
 
             return (
               <EducationCard
@@ -34,8 +38,11 @@ const { education } = cvData;
                 endYear={endYear}
                 url={url}
                 score={score}
+                viewLabel={viewLabel}
+                presentLabel={presentLabel}
+                inLabel={inLabel}
               />
-            )
+            );
           }
         )
       }

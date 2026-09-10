@@ -5,20 +5,33 @@ interface Props {
   company: string;
   startYear: string | number;
   endYear?: string | number;
+  viewLabel?: string;
+  presentLabel?: string;
 }
 
-const { company, startYear, endYear } = Astro.props;
+const {
+  company,
+  startYear,
+  endYear,
+  viewLabel = "Ver experiencia",
+  presentLabel = "Actual",
+} = Astro.props;
 ---
 
 <div class="company-card" data-company={company}>
   <div class="company-card-content">
     <div class="company-header">
       <h3>{company}</h3>
-      <CompactYearBadge startYear={startYear} endYear={endYear} showIcon={true} />
+      <CompactYearBadge
+        startYear={startYear}
+        endYear={endYear}
+        showIcon={true}
+        presentLabel={presentLabel}
+      />
     </div>
     <div class="company-indicator">
       <i class="fas fa-info-circle"></i>
-      <span>Ver experiencia</span>
+      <span>{viewLabel}</span>
     </div>
   </div>
-</div> 
+</div>
