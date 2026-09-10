@@ -33,12 +33,14 @@ const langCode = effectiveLocale.toUpperCase();
     </button>
   </div>
 
-  <button class="cv-download-btn" id="cv-download-btn" title="Descargar CV" data-name={name}>
-    <i class="fas fa-file-download"></i>
-  </button>
-  <div class="cv-lang-panel" id="cv-lang-panel">
-    <div class="cv-lang-option" data-locale="es">Español</div>
-    <div class="cv-lang-option" data-locale="en">English</div>
+  <div class="cv-download-wrapper">
+    <button class="cv-download-btn" id="cv-download-btn" title="Descargar CV" data-name={name}>
+      <i class="fas fa-file-download"></i>
+    </button>
+    <div class="cv-lang-panel" id="cv-lang-panel">
+      <div class="cv-lang-option" data-locale="es">Español</div>
+      <div class="cv-lang-option" data-locale="en">English</div>
+    </div>
   </div>
 
   <button class="color-picker-btn" id="color-picker-btn">
@@ -258,10 +260,15 @@ const langCode = effectiveLocale.toUpperCase();
     }
   }
 
+  .cv-download-wrapper {
+    position: relative;
+  }
+
   .cv-lang-panel {
     position: absolute;
-    right: 50px;
-    top: 5px;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -272,7 +279,6 @@ const langCode = effectiveLocale.toUpperCase();
     box-shadow: 0 3px 8px var(--shadow);
     opacity: 0;
     pointer-events: none;
-    transform: translateX(10px);
     transition: all 0.3s ease;
     z-index: 1000;
     min-width: 120px;
@@ -281,7 +287,7 @@ const langCode = effectiveLocale.toUpperCase();
   .cv-lang-panel.show {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(0);
+    transform: translateY(-50%) translateX(0);
   }
 
   .cv-lang-option {
@@ -375,8 +381,9 @@ const langCode = effectiveLocale.toUpperCase();
     .cv-lang-panel {
       right: calc(100% + 10px);
       left: auto;
-      top: 0;
+      top: 50%;
       bottom: auto;
+      transform: translateY(-50%);
     }
   }
 
