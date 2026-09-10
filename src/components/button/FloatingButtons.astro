@@ -221,6 +221,7 @@ const langCode = effectiveLocale.toUpperCase();
     pointer-events: none;
     transform: translateX(10px);
     transition: all 0.3s ease;
+    z-index: 1000;
   }
 
   .color-picker-panel.show {
@@ -235,7 +236,8 @@ const langCode = effectiveLocale.toUpperCase();
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.2s;
-    border: 2px solid transparent;
+    border: 2px solid var(--border);
+    background-color: var(--card-bg);
   }
 
   .color-option:hover {
@@ -245,6 +247,12 @@ const langCode = effectiveLocale.toUpperCase();
   .color-option.selected {
     border-color: white;
     box-shadow: 0 0 0 2px var(--border);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .color-option.selected {
+      border-color: var(--card-bg);
+    }
   }
 
   @media (max-width: 768px) {
@@ -494,10 +502,18 @@ const langCode = effectiveLocale.toUpperCase();
       });
     }
 
-    // Color picker
     const colorPickerBtn = document.getElementById('color-picker-btn');
     const colorPickerPanel = document.getElementById('color-picker-panel');
     if (colorPickerBtn && colorPickerPanel) {
+      // Aplica el color guardado al cargar para que el panel se refleje inmediatamente
+      const savedColor = localStorage.getItem('primaryColor');
+      if (savedColor) {
+        applyColor(savedColor);
+        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+        const matchedOption = document.querySelector(`.color-option[data-color="${savedColor}"]`);
+        if (matchedOption) matchedOption.classList.add('selected');
+      }
+
       colorPickerBtn.addEventListener('click', () => {
         colorPickerPanel.classList.toggle('show');
       });
@@ -511,14 +527,6 @@ const langCode = effectiveLocale.toUpperCase();
           colorPickerPanel.classList.remove('show');
         });
       });
-
-      const savedColor = localStorage.getItem('primaryColor');
-      if (savedColor) {
-        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
-        const matchedOption = document.querySelector(`.color-option[data-color="${savedColor}"]`);
-        if (matchedOption) matchedOption.classList.add('selected');
-        applyColor(savedColor);
-      }
 
       document.addEventListener('click', (event) => {
         if (!colorPickerBtn.contains(event.target) && !colorPickerPanel.contains(event.target)) {
