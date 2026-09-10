@@ -24,21 +24,6 @@
   background-color: var(--bg-hover);
 }
 
-/* Asegurar que el texto permanezca visible en el hover */
-.card:hover h3,
-.company-card:hover h3,
-.education-card:hover h3,
-.project-card:hover h3 {
-  color: var(--text);
-}
-
-.card:hover .card-description,
-.company-card:hover .card-description,
-.education-card:hover .card-description,
-.project-card:hover .card-description {
-  color: var(--secondary);
-}
-
 .card-content,
 .company-card-content,
 .education-card-content,
@@ -65,6 +50,28 @@
   color: var(--text, #333);
   font-size: 1rem;
   font-weight: 500;
+}
+
+/* Estilos para la descripción en las tarjetas */
+.card-description {
+  margin: 0 0 0.5rem 0;
+  color: var(--secondary);
+  font-size: 0.85rem;
+}
+
+/* Asegurar que el texto permanezca visible en el hover */
+.card:hover h3,
+.company-card:hover h3,
+.education-card:hover h3,
+.project-card:hover h3 {
+  color: var(--text);
+}
+
+.card:hover .card-description,
+.company-card:hover .card-description,
+.education-card:hover .card-description,
+.project-card:hover .card-description {
+  color: var(--secondary);
 }
 
 .card-indicator,
@@ -116,13 +123,6 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
-}
-
-/* Estilos para la descripción en las tarjetas */
-.card-description {
-  margin: 0 0 0.5rem 0;
-  color: var(--secondary);
-  font-size: 0.85rem;
 }
 
 /* Estilos para tarjetas de enlace */

@@ -1,5 +1,33 @@
 /* Estilos globales para el componente de acordeón */
 
+.year-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary, #8b0000);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.year-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.year-badge i {
+  font-size: 0.8rem;
+}
+
+.year-badge time {
+  font-weight: 500;
+}
+
 .accordion-container {
   width: 100%;
   margin-bottom: 1.5rem;
@@ -27,18 +55,6 @@
   background-color: var(--bg-hover);
 }
 
-/* Asegurar que el texto permanezca visible en el hover */
-.accordion-header:hover h2,
-.accordion-header:hover h3,
-.accordion-item .accordion-header:hover h3,
-.accordion-item .accordion-header:hover .accordion-title {
-  color: var(--text);
-}
-
-.accordion-header:hover .accordion-icon {
-  color: var(--text);
-}
-
 .accordion-header h2,
 .accordion-header h3 {
   margin: 0;
@@ -61,6 +77,16 @@
   transition: transform 0.3s ease;
   margin-left: 0.5rem;
   flex-shrink: 0;
+}
+
+/* Asegurar que el texto permanezca visible en el hover */
+.accordion-header:hover h2,
+.accordion-header:hover h3 {
+  color: var(--text);
+}
+
+.accordion-header:hover .accordion-icon {
+  color: var(--text);
 }
 
 .accordion-icon-wrapper {
@@ -141,6 +167,11 @@
   font-size: 0.95rem;
 }
 
+.accordion-item .accordion-header:hover h3,
+.accordion-item .accordion-header:hover .accordion-title {
+  color: var(--text);
+}
+
 .accordion-item .accordion-content {
   border-top: none;
   padding: 0.75rem 0.75rem 0.5rem;
@@ -171,39 +202,11 @@
     margin-left: 0.25rem;
   }
 
-  .modal .year-badge,
-  .year-badge {
+  .year-badge,
+  .modal .year-badge {
     padding: 0.2rem 0.6rem;
     font-size: 0.75rem;
   }
-}
-
-.year-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--primary, #8b0000);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  white-space: nowrap;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-.year-badge:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.year-badge i {
-  font-size: 0.8rem;
-}
-
-.year-badge time {
-  font-weight: 500;
 }
 
 /* Estilos específicos para experiencias en el modal */
