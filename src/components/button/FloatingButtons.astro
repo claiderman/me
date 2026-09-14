@@ -395,7 +395,7 @@ const langCode = effectiveLocale.toUpperCase();
 <script>
   import { navigate } from "astro:transitions/client";
 
-  function switchLanguage(newLang) {
+  function switchLanguage(newLang: string) {
     const basePath = '/me';
     const segments = window.location.pathname.replace(basePath, '').split('/').filter(Boolean);
     if (['es', 'en'].includes(segments[0])) {
@@ -403,11 +403,10 @@ const langCode = effectiveLocale.toUpperCase();
     }
     const rest = segments.length > 0 ? '/' + segments.join('/') : '';
     const url = basePath + '/' + newLang + rest + '/';
-    // Guarda la sección visible para restaurarla tras el cambio (no mandar al inicio)
-    try {
-      sessionStorage.setItem('lang-scroll-target', getCurrentSectionId());
-    } catch (e) {}
-    // SPA swap sin recarga dura; fallback a navegación clásica
+    // Guarda la posición de scroll Y antes de navegar
+    const scrollY = window.scrollY;
+    sessionStorage.setItem('lang-scroll-y', String(scrollY));
+    // SPA swap con View Transitions; fallback a navegación clásica
     try {
       navigate(url);
     } catch {
@@ -428,21 +427,20 @@ const langCode = effectiveLocale.toUpperCase();
     return current || (sections.length > 0 ? sections[0].id : '');
   }
 
-  // Restaura la sección guardada al llegar desde un cambio de idioma
-  function restoreSectionAfterLanguageSwitch() {
-    var target = null;
+  // Restaura scroll Y guardado tras cambio de idioma
+  function restoreScrollAfterLanguageSwitch() {
+    var savedY = null;
     try {
-      target = sessionStorage.getItem('lang-scroll-target');
-      sessionStorage.removeItem('lang-scroll-target');
+      savedY = sessionStorage.getItem('lang-scroll-y');
+      sessionStorage.removeItem('lang-scroll-y');
     } catch (e) {}
-    if (!target) return;
-    var scrollToTarget = function () {
-      var el = document.getElementById(target);
-      if (el) el.scrollIntoView({ block: 'start' });
-    };
-    requestAnimationFrame(function () {
-      setTimeout(scrollToTarget, 60);
-    });
+    if (savedY === null) return;
+    var y = parseInt(savedY, 10);
+    if (!isNaN(y)) {
+      requestAnimationFrame(() => {
+        setTimeout(() => window.scrollTo(0, y), 50);
+      });
+    }
   }
 
   // Pre-carga el HTML del otro idioma (una vez) para que el cambio sea instantáneo
@@ -516,8 +514,8 @@ const langCode = effectiveLocale.toUpperCase();
     // Sincroniza la preferencia guardada con el locale real de la URL
     localStorage.setItem('locale', currentLocale);
 
-    // Vuelve a la sección donde estaba el usuario si viene de un cambio de idioma
-    restoreSectionAfterLanguageSwitch();
+    // Restaura scroll Y si venimos de un cambio de idioma
+    restoreScrollAfterLanguageSwitch();
 
     // Pre-carga la ruta del otro idioma para un cambio instantáneo
     prefetchAlternateLocale(currentLocale);

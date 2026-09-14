@@ -5,7 +5,9 @@ import { CardInit } from "@card/index";
 export function initializeClient() {
   // Initialize accordions and all card scripts
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", runClientInit, { once: true });
+    document.addEventListener("DOMContentLoaded", runClientInit, {
+      once: true,
+    });
   } else {
     runClientInit();
   }

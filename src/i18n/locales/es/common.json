@@ -1,0 +1,95 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "profile": "Perfil",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "languages": "Idiomas",
+    "skills": "Habilidades"
+  },
+  "hero": {
+    "contact": "Contacto",
+    "downloadCV": "Descargar CV",
+    "location": "Ubicación"
+  },
+  "sections": {
+    "about": "Sobre mí",
+    "experience": "Experiencia Laboral",
+    "education": "Educación",
+    "languages": "Idiomas",
+    "skills": "Habilidades Técnicas",
+    "certificates": "Certificaciones",
+    "projects": "Proyectos Destacados",
+    "testimonials": "Testimonios",
+    "interests": "Intereses"
+  },
+  "common": {
+    "present": "Actualidad",
+    "until": "Hasta",
+    "from": "Desde",
+    "to": "Hasta",
+    "location": "Ubicación",
+    "company": "Empresa",
+    "position": "Cargo",
+    "duration": "Duración",
+    "highlights": "Logros destacados",
+    "technologies": "Tecnologías",
+    "description": "Descripción",
+    "summary": "Resumen",
+    "details": "Detalles",
+    "viewMore": "Ver más",
+    "viewLess": "Ver menos",
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "download": "Descargar",
+    "print": "Imprimir",
+    "share": "Compartir",
+    "theme": "Tema",
+    "language": "Idioma",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
+    "colorTheme": "Tema de color",
+    "scrollToTop": "Volver arriba"
+  },
+  "contact": {
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "Ubicación",
+    "sendEmail": "Enviar correo",
+    "call": "Llamar",
+    "viewProfile": "Ver perfil",
+    "copyEmail": "Copiar correo",
+    "copyPhone": "Copiar teléfono",
+    "copyLocation": "Copiar ubicación",
+    "copyLinkedIn": "Copiar LinkedIn",
+    "copyGitHub": "Copiar GitHub"
+  },
+  "modal": {
+    "close": "Cerrar",
+    "experienceDetails": "Detalles de la experiencia",
+    "educationDetails": "Detalles de la educación",
+    "projectDetails": "Detalles del proyecto"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "builtWith": "Construido con",
+    "deployedOn": "Desplegado en"
+  },
+  "aria": {
+    "toggleTheme": "Cambiar tema",
+    "toggleLanguage": "Cambiar idioma",
+    "openColorPicker": "Abrir selector de colores",
+    "selectColor": "Seleccionar color",
+    "scrollToTop": "Volver al inicio",
+    "downloadCV": "Descargar currículum en PDF",
+    "copyToClipboard": "Copiar al portapapeles",
+    "closeModal": "Cerrar modal",
+    "navigationMenu": "Menú de navegación",
+    "mainContent": "Contenido principal"
+  }
+}
