@@ -3,15 +3,18 @@ import { ClientRouter } from "astro:transitions";
 import { getInitialTheme } from "../components/theme/script/theme";
 import "../components/modal/styles/modal-tabs.css";
 import { ClientInit } from "@client/index";
+import Footer from "@components/Footer.astro";
 import getCVData from "@utils/cv";
+import type { I18nTFunction } from "@types";
 import "@globalStyles/global.css";
 
 interface Props {
   title: string;
   locale: string;
+  t: I18nTFunction;
 }
 
-const { title, locale } = Astro.props;
+const { title, locale, t } = Astro.props;
 const cvData = getCVData(locale);
 const { name, label, image, summary, location, profiles } = cvData.basics;
 const linkedInUrl = profiles.find((p) => p.network === "LinkedIn")?.url;
@@ -107,6 +110,14 @@ const initialTheme = getInitialTheme();
     <main class="mt-16 px-4 sm:px-6 lg:px-8">
       <slot />
     </main>
+    <Footer
+      t={t}
+      locale={locale as "es" | "en"}
+      name={name}
+      label={label}
+      email={cvData.basics.email}
+      profiles={profiles}
+    />
     <ClientInit />
   </body>
 </html>

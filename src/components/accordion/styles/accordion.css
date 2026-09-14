@@ -114,28 +114,8 @@
 
 .accordion-content[aria-hidden="false"] {
   max-height: 2000px;
-  overflow-y: visible;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border, #e0e0e0) transparent;
+  overflow: visible;
   padding: 0.75rem 0.75rem 0.5rem;
-}
-
-/* Estilos para scrollbar */
-.accordion-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.accordion-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.accordion-content::-webkit-scrollbar-thumb {
-  background: var(--border, #e0e0e0);
-  border-radius: 4px;
-}
-
-.accordion-content::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary, #666);
 }
 
 /* Estilos para acordeones anidados */

@@ -37,7 +37,14 @@ const { sections, t } = Astro.props;
     left: 2rem;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 100;
+    z-index: 10;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .timeline-nav.is-over-footer {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 
   .timeline-line {
@@ -222,4 +229,18 @@ const { sections, t } = Astro.props;
   document.querySelectorAll('section[id]').forEach((section) => {
     observer.observe(section);
   });
+
+  const footer = document.querySelector('footer');
+  const timelineNav = document.querySelector('.timeline-nav');
+
+  if (footer && timelineNav) {
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => {
+        timelineNav.classList.toggle('is-over-footer', entry.isIntersecting);
+      },
+      { threshold: 0.01 },
+    );
+
+    footerObserver.observe(footer);
+  }
 </script>

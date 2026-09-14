@@ -693,15 +693,9 @@
       "rating": 5
     },
     {
-      "author": "CTO",
-      "company": "Bancolombia",
-      "text": "Trabajar con él fue excelente. Implementó sistemas robustos de auditoría y logging que cumplían con todos los requisitos de compliance bancario. Altamente recomendado.",
-      "rating": 5
-    },
-    {
-      "author": "Directora de Proyectos",
-      "company": "Comfama",
-      "text": "Su capacidad para transformar requisitos técnicos complejos en soluciones elegantes y serverless es impresionante. Los proyectos siempre se entregaron a tiempo y dentro del presupuesto.",
+      "author": "Líder Técnico",
+      "company": "Pragma",
+      "text": "Claiderman combina una sólida base de desarrollo backend con una gran capacidad para colaborar en equipos ágiles. Sus soluciones con Java, Spring Boot y servicios cloud ayudaron a construir sistemas confiables y mantenibles.",
       "rating": 5
     }
   ]
