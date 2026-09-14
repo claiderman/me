@@ -13,6 +13,8 @@ interface Props {
 const { t, locale } = Astro.props;
 const cvData = await getCVData(locale);
 const { skills } = cvData;
+const pageSize = 5;
+const initialPageCount = Math.max(1, Math.ceil(skills.length / pageSize));
 
 const SKILLS_ICONS: Record<string, string> = {
   HTML: `<i class="fab fa-html5"></i>`,
@@ -84,6 +86,18 @@ const SKILLS_ICONS: Record<string, string> = {
   Arquitectura: `<i class="fas fa-sitemap"></i>`,
   "Herramientas y Metodologías": `<i class="fas fa-tools"></i>`,
   "Ofimática y Colaboración": `<i class="fas fa-users"></i>`,
+  "IA y Automatización": `<i class="fas fa-brain"></i>`,
+  "AI and Automation": `<i class="fas fa-brain"></i>`,
+  Herramientas: `<i class="fas fa-toolbox"></i>`,
+  Tools: `<i class="fas fa-toolbox"></i>`,
+  LangChain: `<i class="fas fa-link"></i>`,
+  "Hermes Agents": `<i class="fas fa-robot"></i>`,
+  RAG: `<i class="fas fa-layer-group"></i>`,
+  Ollama: `<i class="fas fa-server"></i>`,
+  Qdrant: `<i class="fas fa-database"></i>`,
+  Pgvector: `<i class="fas fa-database"></i>`,
+  Cursor: `<i class="fas fa-i-cursor"></i>`,
+  Opencode: `<i class="fas fa-code"></i>`,
   "C#": `<i class="fab fa-microsoft"></i>`,
 };
 
@@ -158,15 +172,52 @@ const SKILL_NAME_TO_ICON: Record<string, string> = {
   Arquitectura: "Arquitectura",
   "Herramientas y Metodologías": "Herramientas y Metodologías",
   "Ofimática y Colaboración": "Ofimática y Colaboración",
+  "IA y Automatización": "IA y Automatización",
+  Herramientas: "Herramientas",
+  "AI and Automation": "AI and Automation",
+  Tools: "Tools",
+  LangChain: "LangChain",
+  "Hermes Agents": "Hermes Agents",
+  RAG: "RAG",
+  Ollama: "Ollama",
+  Qdrant: "Qdrant",
+  Pgvector: "Pgvector",
+  Cursor: "Cursor",
+  Opencode: "Opencode",
   "C#": "C#",
 };
 ---
 
 <Section>
   <Accordion title={t('sections.skills')} icon="fas fa-tools">
-    <div class="cards-grid skills-grid">
+    <div class="skills-toolbar" aria-label={t('skills.skillsFilters', { ns: 'sections' })}>
+      <div class="skills-filter-group">
+        <span class="skills-filter-label">{t('skills.skillsCategories', { ns: 'sections' })}</span>
+        <div class="skills-category-filters" role="group" aria-label={t('skills.skillsCategories', { ns: 'sections' })}>
+          <button class="skill-filter is-active" type="button" data-category="all">{t('skills.skillsAll', { ns: 'sections' })}</button>
+          {
+            skills.map(({ name }) => (
+              <button class="skill-filter" type="button" data-category={name}>{name}</button>
+            ))
+          }
+        </div>
+      </div>
+      <div class="skills-filter-group">
+        <label class="skills-filter-label" for="skill-tag-filter">{t('skills.skillsTags', { ns: 'sections' })}</label>
+        <select id="skill-tag-filter" class="skill-tag-filter">
+          <option value="all">{t('skills.skillsAllTags', { ns: 'sections' })}</option>
+          {
+            [...new Set(skills.flatMap(({ keywords }) => keywords))].sort().map((keyword) => (
+              <option value={keyword}>{keyword}</option>
+            ))
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="cards-grid skills-grid" data-skills-grid>
       {
-        skills.map(({ name, keywords }) => {
+        skills.map(({ name, keywords }, index) => {
           const iconKey = SKILL_NAME_TO_ICON[name] || name;
           const iconHtml = SKILLS_ICONS[iconKey];
 
@@ -176,13 +227,139 @@ const SKILL_NAME_TO_ICON: Record<string, string> = {
               iconHtml={iconHtml}
               keywords={keywords}
               skillIcons={SKILLS_ICONS}
+              hidden={index >= pageSize}
             />
           )
         })
       }
     </div>
+    <nav
+      class="skills-pagination"
+      aria-label={t('skills.skillsPagination', { ns: 'sections' })}
+      data-next-label={t('skills.skillsNext', { ns: 'sections' })}
+      data-page-label={t('skills.skillsPage', { ns: 'sections' })}
+      data-previous-label={t('skills.skillsPrevious', { ns: 'sections' })}
+      data-skills-pagination
+    >
+      <button class="skill-page-button" type="button" disabled>{t('skills.skillsPrevious', { ns: 'sections' })}</button>
+      {
+        Array.from({ length: initialPageCount }, (_, index) => (
+          <button
+            class="skill-page-button"
+            type="button"
+            aria-current={index === 0 ? 'page' : 'false'}
+            aria-label={`${t('skills.skillsPage', { ns: 'sections' })} ${index + 1}`}
+          >
+            {index + 1}
+          </button>
+        ))
+      }
+      <button class="skill-page-button" type="button" disabled>{t('skills.skillsNext', { ns: 'sections' })}</button>
+    </nav>
   </Accordion>
 </Section>
+
+<script>
+  function initializeSkillsPagination() {
+    const skillsGrid = document.querySelector<HTMLElement>('[data-skills-grid]');
+    const pagination = document.querySelector<HTMLElement>('[data-skills-pagination]');
+    const tagFilter = document.querySelector<HTMLSelectElement>('#skill-tag-filter');
+    const categoryFilters = document.querySelectorAll<HTMLButtonElement>('[data-category]');
+    const pageSize = 5;
+    let selectedCategory = 'all';
+    let currentPage = 1;
+
+    if (skillsGrid && pagination && tagFilter && pagination.dataset.skillsInit !== '1') {
+      pagination.dataset.skillsInit = '1';
+    const cards = Array.from(skillsGrid.querySelectorAll<HTMLElement>('.skill-card'));
+    const nextLabel = pagination.dataset.nextLabel ?? 'Next';
+    const pageLabel = pagination.dataset.pageLabel ?? 'Page';
+    const previousLabel = pagination.dataset.previousLabel ?? 'Previous';
+
+    const render = () => {
+      const selectedTag = tagFilter.value;
+      const filteredCards = cards.filter((card) => {
+        const matchesCategory = selectedCategory === 'all' || card.querySelector('h3')?.textContent === selectedCategory;
+        const tags = Array.from(card.querySelectorAll('.keyword-text')).map((tag) => tag.textContent);
+        const matchesTag = selectedTag === 'all' || tags.includes(selectedTag);
+        return matchesCategory && matchesTag;
+      });
+      const pageCount = Math.max(1, Math.ceil(filteredCards.length / pageSize));
+      currentPage = Math.min(currentPage, pageCount);
+
+      cards.forEach((card) => {
+        card.hidden = !filteredCards.includes(card);
+      });
+
+      filteredCards.forEach((card, index) => {
+        card.hidden = index < (currentPage - 1) * pageSize || index >= currentPage * pageSize;
+      });
+
+      pagination.innerHTML = '';
+
+      const previousButton = document.createElement('button');
+      previousButton.type = 'button';
+      previousButton.className = 'skill-page-button';
+      previousButton.textContent = previousLabel;
+      previousButton.disabled = currentPage === 1;
+      previousButton.addEventListener('click', () => {
+        currentPage -= 1;
+        render();
+      });
+      pagination.append(previousButton);
+
+      for (let page = 1; page <= pageCount; page += 1) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'skill-page-button';
+        button.textContent = String(page);
+        button.ariaLabel = `${pageLabel} ${page}`;
+        button.ariaCurrent = page === currentPage ? 'page' : 'false';
+        button.addEventListener('click', () => {
+          currentPage = page;
+          render();
+        });
+        pagination.append(button);
+      }
+
+      const nextButton = document.createElement('button');
+      nextButton.type = 'button';
+      nextButton.className = 'skill-page-button';
+      nextButton.textContent = nextLabel;
+      nextButton.disabled = currentPage === pageCount;
+      nextButton.addEventListener('click', () => {
+        currentPage += 1;
+        render();
+      });
+      pagination.append(nextButton);
+    };
+
+    categoryFilters.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedCategory = button.dataset.category ?? 'all';
+        currentPage = 1;
+        categoryFilters.forEach((filter) => filter.classList.toggle('is-active', filter === button));
+        render();
+      });
+    });
+
+    tagFilter.addEventListener('change', () => {
+      currentPage = 1;
+      render();
+    });
+
+    render();
+  }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSkillsPagination, { once: true });
+  } else {
+    initializeSkillsPagination();
+  }
+
+  document.addEventListener('astro:page-load', initializeSkillsPagination);
+</script>
 
 <style>
   @import '@card/styles/cards.css';
@@ -190,5 +367,66 @@ const SKILL_NAME_TO_ICON: Record<string, string> = {
   .skills-grid {
     gap: 1rem;
     padding: 1rem;
+  }
+
+  .skills-toolbar {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem 1rem 0;
+  }
+
+  .skills-filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .skills-filter-label {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .skills-category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-filter,
+  .skill-page-button {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.45rem 0.7rem;
+    color: var(--text);
+    background: var(--card-bg);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .skill-filter:hover,
+  .skill-filter.is-active,
+  .skill-page-button[aria-current="page"] {
+    color: var(--text-on-dark);
+    background: var(--primary);
+  }
+
+  .skill-page-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  .skill-tag-filter {
+    min-width: 12rem;
+  }
+
+  .skills-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 1rem 1rem;
+  }
+
+  .skills-pagination:empty {
+    display: none;
   }
 </style>

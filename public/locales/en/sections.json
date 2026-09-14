@@ -46,7 +46,16 @@
     "title": "Technical Skills",
     "subtitle": "Technologies and tools I master",
     "noSkills": "No skills recorded",
-    "categories": "Categories"
+    "categories": "Categories",
+    "skillsFilters": "Technical skills filters",
+    "skillsCategories": "Categories",
+    "skillsAll": "All",
+    "skillsTags": "Filter by technology",
+    "skillsAllTags": "All technologies",
+    "skillsPagination": "Skills pagination",
+    "skillsPage": "Page",
+    "skillsPrevious": "Previous",
+    "skillsNext": "Next"
   },
   "certificates": {
     "title": "Certifications",

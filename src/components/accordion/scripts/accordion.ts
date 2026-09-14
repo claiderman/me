@@ -25,6 +25,8 @@ export function initAccordionsInContainer(container) {
 
     if (!content) return;
 
+    const isExpanded = header.getAttribute("aria-expanded") === "true";
+
     // Solo configurar si no está ya configurado
     if (!header.hasAttribute("aria-expanded")) {
       header.setAttribute("aria-expanded", "false");
@@ -35,6 +37,12 @@ export function initAccordionsInContainer(container) {
         content.style.maxHeight = "0px";
         content.style.transition = "max-height 0.3s ease-out";
       }
+    } else if (isExpanded) {
+      content.style.maxHeight = "none";
+    }
+
+    if (content instanceof HTMLElement) {
+      content.style.transition = "max-height 0.3s ease-out";
     }
 
     // Remover listener anterior si existe
@@ -51,7 +59,7 @@ export function initAccordionsInContainer(container) {
       // Ajustar altura máxima para animación
       if (!isExpanded) {
         // Expandir el contenido
-        content.style.maxHeight = "2000px"; // Altura suficiente para el contenido
+        content.style.maxHeight = `${content.scrollHeight}px`;
       } else {
         // Contraer el contenido
         content.style.maxHeight = "0px";
