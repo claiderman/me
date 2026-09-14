@@ -1,16 +1,19 @@
 ---
+import type { I18nTFunction } from "@types";
+
 interface Props {
   sections: {
     id: string;
     title: string;
     icon: string;
   }[];
+  t: I18nTFunction;
 }
 
-const { sections } = Astro.props;
+const { sections, t } = Astro.props;
 ---
 
-<nav class="timeline-nav">
+<nav class="timeline-nav" aria-label={t('aria.navigationMenu')}>
   <div class="timeline-line"></div>
   <ul>
     {
@@ -34,7 +37,14 @@ const { sections } = Astro.props;
     left: 2rem;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 100;
+    z-index: 10;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .timeline-nav.is-over-footer {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 
   .timeline-line {
@@ -219,4 +229,18 @@ const { sections } = Astro.props;
   document.querySelectorAll('section[id]').forEach((section) => {
     observer.observe(section);
   });
-</script> 
+
+  const footer = document.querySelector('footer');
+  const timelineNav = document.querySelector('.timeline-nav');
+
+  if (footer && timelineNav) {
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => {
+        timelineNav.classList.toggle('is-over-footer', entry.isIntersecting);
+      },
+      { threshold: 0.01 },
+    );
+
+    footerObserver.observe(footer);
+  }
+</script>

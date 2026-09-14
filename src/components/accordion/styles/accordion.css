@@ -1,5 +1,33 @@
 /* Estilos globales para el componente de acordeón */
 
+.year-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary, #8b0000);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.year-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.year-badge i {
+  font-size: 0.8rem;
+}
+
+.year-badge time {
+  font-weight: 500;
+}
+
 .accordion-container {
   width: 100%;
   margin-bottom: 1.5rem;
@@ -23,20 +51,8 @@
 }
 
 .accordion-header:hover {
-  border-color: var(--primary, #8B0000);
+  border-color: var(--primary, #8b0000);
   background-color: var(--bg-hover);
-}
-
-/* Asegurar que el texto permanezca visible en el hover */
-.accordion-header:hover h2,
-.accordion-header:hover h3,
-.accordion-item .accordion-header:hover h3,
-.accordion-item .accordion-header:hover .accordion-title {
-  color: var(--text);
-}
-
-.accordion-header:hover .accordion-icon {
-  color: var(--text);
 }
 
 .accordion-header h2,
@@ -61,6 +77,16 @@
   transition: transform 0.3s ease;
   margin-left: 0.5rem;
   flex-shrink: 0;
+}
+
+/* Asegurar que el texto permanezca visible en el hover */
+.accordion-header:hover h2,
+.accordion-header:hover h3 {
+  color: var(--text);
+}
+
+.accordion-header:hover .accordion-icon {
+  color: var(--text);
 }
 
 .accordion-icon-wrapper {
@@ -88,28 +114,8 @@
 
 .accordion-content[aria-hidden="false"] {
   max-height: 2000px;
-  overflow-y: visible;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border, #e0e0e0) transparent;
+  overflow: visible;
   padding: 0.75rem 0.75rem 0.5rem;
-}
-
-/* Estilos para scrollbar */
-.accordion-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.accordion-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.accordion-content::-webkit-scrollbar-thumb {
-  background: var(--border, #e0e0e0);
-  border-radius: 4px;
-}
-
-.accordion-content::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary, #666);
 }
 
 /* Estilos para acordeones anidados */
@@ -131,7 +137,7 @@
 }
 
 .accordion-item .accordion-header:hover {
-  border-color: var(--primary, #8B0000);
+  border-color: var(--primary, #8b0000);
   background-color: var(--bg-hover);
 }
 
@@ -139,6 +145,11 @@
 .accordion-item .accordion-header .accordion-title {
   color: var(--text-color, #333);
   font-size: 0.95rem;
+}
+
+.accordion-item .accordion-header:hover h3,
+.accordion-item .accordion-header:hover .accordion-title {
+  color: var(--text);
 }
 
 .accordion-item .accordion-content {
@@ -162,48 +173,20 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .accordion-header {
     gap: 0.5rem;
   }
-  
+
   .accordion-icon-wrapper {
     margin-left: 0.25rem;
   }
-  
-  .modal .year-badge,
-  .year-badge {
+
+  .year-badge,
+  .modal .year-badge {
     padding: 0.2rem 0.6rem;
     font-size: 0.75rem;
   }
-}
-
-.year-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--primary, #8B0000);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  white-space: nowrap;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-.year-badge:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.year-badge i {
-  font-size: 0.8rem;
-}
-
-.year-badge time {
-  font-weight: 500;
 }
 
 /* Estilos específicos para experiencias en el modal */
@@ -211,4 +194,4 @@
   padding: 0.5rem 0;
   z-index: 0;
   position: relative;
-} 
+}

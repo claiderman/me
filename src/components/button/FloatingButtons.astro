@@ -1,4 +1,16 @@
 ---
+import { defaultLocale, type Locale } from "@i18n/config";
+import type { I18nTFunction } from "@types";
+
+interface Props {
+  t: I18nTFunction;
+  locale?: Locale;
+  name: string;
+}
+
+const { t, locale, name } = Astro.props;
+const effectiveLocale: Locale = locale || defaultLocale;
+const langCode = effectiveLocale.toUpperCase();
 ---
 
 <div class="floating-buttons">
@@ -11,140 +23,37 @@
       </div>
     </label>
   </div>
-  <button class="color-picker-btn" id="color-picker-btn" title="Cambiar color principal">
+
+  <div class="language-switcher-wrapper">
+    <button
+      class="language-switcher-btn"
+      id="language-switcher-btn"
+    >
+      <span class="lang-code">{langCode}</span>
+    </button>
+  </div>
+
+  <div class="cv-download-wrapper">
+    <button class="cv-download-btn" id="cv-download-btn" title="Descargar CV" data-name={name}>
+      <i class="fas fa-file-download"></i>
+    </button>
+    <div class="cv-lang-panel" id="cv-lang-panel">
+      <div class="cv-lang-option" data-locale="es">Español</div>
+      <div class="cv-lang-option" data-locale="en">English</div>
+    </div>
+  </div>
+
+  <button class="color-picker-btn" id="color-picker-btn">
     <i class="fas fa-palette"></i>
   </button>
   <div class="color-picker-panel" id="color-picker-panel">
-    <div class="color-option" data-color="#8B0000" style="background-color: #8B0000;"></div>
-    <div class="color-option" data-color="#006400" style="background-color: #006400;"></div>
-    <div class="color-option" data-color="#00008B" style="background-color: #00008B;"></div>
-    <div class="color-option" data-color="#4B0082" style="background-color: #4B0082;"></div>
-    <div class="color-option" data-color="#800080" style="background-color: #800080;"></div>
+    <div class="color-option" data-color="#8B0000" style="background-color: #8B0000"></div>
+    <div class="color-option" data-color="#006400" style="background-color: #006400"></div>
+    <div class="color-option" data-color="#00008B" style="background-color: #00008B"></div>
+    <div class="color-option" data-color="#4B0082" style="background-color: #4B0082"></div>
+    <div class="color-option" data-color="#800080" style="background-color: #800080"></div>
   </div>
 </div>
-
-<script>
-  function toggleTheme() {
-    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(newTheme);
-    localStorage.setItem('theme', newTheme);
-  }
-
-  function updateLanguageText() {
-    const langText = document.querySelector('.lang-text');
-    if (langText) {
-      const currentLanguage = localStorage.getItem('language') || 'es';
-      langText.textContent = currentLanguage.toUpperCase();
-    }
-  }
-
-  function setCustomColors(primaryColor) {
-    // Función para calcular un color más oscuro para primary-dark
-    function darkenColor(color, percent) {
-      const num = parseInt(color.replace('#', ''), 16);
-      const amt = Math.round(2.55 * percent);
-      const R = (num >> 16) - amt;
-      const G = (num >> 8 & 0x00FF) - amt;
-      const B = (num & 0x0000FF) - amt;
-      return '#' + (
-        0x1000000 + 
-        (R < 0 ? 0 : R) * 0x10000 + 
-        (G < 0 ? 0 : G) * 0x100 + 
-        (B < 0 ? 0 : B)
-      ).toString(16).slice(1);
-    }
-
-    // Crear estilos CSS personalizados
-    const isDark = document.documentElement.classList.contains('dark');
-    const root = document.documentElement;
-    
-    if (isDark) {
-      // Versión del tema oscuro
-      root.style.setProperty('--primary', primaryColor);
-      root.style.setProperty('--border-color', primaryColor);
-      root.style.setProperty('--accent', primaryColor);
-      root.style.setProperty('--primary-dark', darkenColor(primaryColor, 20));
-    } else {
-      // Versión del tema claro
-      root.style.setProperty('--primary', primaryColor);
-      root.style.setProperty('--border-color', primaryColor);
-      root.style.setProperty('--accent', primaryColor);
-      root.style.setProperty('--primary-dark', darkenColor(primaryColor, 20));
-    }
-    
-    // Guardar la preferencia en localStorage
-    localStorage.setItem('primaryColor', primaryColor);
-  }
-
-  // Inicializar cosas después de que se carga el documento
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    const colorPickerBtn = document.getElementById('color-picker-btn');
-    const colorPickerPanel = document.getElementById('color-picker-panel');
-    const colorOptions = document.querySelectorAll('.color-option');
-
-    // Cargar el color guardado
-    const savedColor = localStorage.getItem('primaryColor');
-    if (savedColor) {
-      setCustomColors(savedColor);
-      // Marcar el color seleccionado actualmente
-      colorOptions.forEach(option => {
-        if ((option as HTMLElement).dataset.color === savedColor) {
-          option.classList.add('selected');
-        }
-      });
-    }
-
-    // Actualizar el texto del idioma al cargar la página
-    updateLanguageText();
-
-    if (themeToggle && themeToggle instanceof HTMLInputElement) {
-      // Establecer el estado inicial del checkbox basado en el tema actual
-      themeToggle.checked = document.documentElement.classList.contains('dark');
-
-      themeToggle.addEventListener('change', () => {
-        toggleTheme();
-        // Reaplica los colores personalizados después de cambiar el tema
-        const savedColor = localStorage.getItem('primaryColor');
-        if (savedColor) {
-          setCustomColors(savedColor);
-        }
-      });
-    }
-
-    // Mostrar/ocultar el panel de colores
-    if (colorPickerBtn) {
-      colorPickerBtn.addEventListener('click', () => {
-        colorPickerPanel.classList.toggle('show');
-      });
-    }
-
-    // Manejar la selección de colores
-    colorOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        // Eliminar la selección anterior
-        colorOptions.forEach(opt => opt.classList.remove('selected'));
-        // Seleccionar el nuevo color
-        option.classList.add('selected');
-        // Aplicar el color
-        const newColor = (option as HTMLElement).dataset.color;
-        setCustomColors(newColor);
-        // Ocultar el panel después de seleccionar
-        colorPickerPanel.classList.remove('show');
-      });
-    });
-
-    // Cerrar el panel de colores al hacer clic fuera
-    document.addEventListener('click', (event) => {
-      if (!colorPickerBtn.contains(event.target as Node) && 
-          !colorPickerPanel.contains(event.target as Node)) {
-        colorPickerPanel.classList.remove('show');
-      }
-    });
-  });
-</script>
 
 <style>
   .floating-buttons {
@@ -218,7 +127,69 @@
     z-index: 1;
   }
 
-  /* Estilos para el selector de colores */
+  .language-switcher-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .language-switcher-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    box-shadow: 0 2px 5px var(--shadow);
+    transition: all 0.3s ease;
+    padding: 4px;
+  }
+
+  .language-switcher-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--primary);
+  }
+
+  .lang-flag {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .lang-code {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .cv-download-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px var(--shadow);
+    transition: all 0.3s ease;
+    font-size: 1.3rem;
+  }
+
+  .cv-download-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
   .color-picker-btn {
     width: 40px;
     height: 40px;
@@ -256,6 +227,7 @@
     pointer-events: none;
     transform: translateX(10px);
     transition: all 0.3s ease;
+    z-index: 1000;
   }
 
   .color-picker-panel.show {
@@ -270,7 +242,7 @@
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.2s;
-    border: 2px solid transparent;
+    border: 2px solid var(--border);
   }
 
   .color-option:hover {
@@ -280,6 +252,60 @@
   .color-option.selected {
     border-color: white;
     box-shadow: 0 0 0 2px var(--border);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .color-option.selected {
+      border-color: var(--card-bg);
+    }
+  }
+
+  .cv-download-wrapper {
+    position: relative;
+  }
+
+  .cv-lang-panel {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-10px);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 3px 8px var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    min-width: 120px;
+  }
+
+  .cv-lang-panel.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .cv-lang-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+
+  .cv-lang-option:hover {
+    background: var(--bg-hover);
+  }
+
+  .cv-lang-option.selected {
+    background: var(--primary);
+    color: white;
   }
 
   @media (max-width: 768px) {
@@ -313,6 +339,25 @@
       transform: translateY(32px);
     }
 
+    .language-switcher-btn {
+      width: 36px;
+      height: 36px;
+    }
+
+    .lang-flag {
+      font-size: 1rem;
+    }
+
+    .lang-code {
+      font-size: 0.6rem;
+    }
+
+    .cv-download-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+    }
+
     .color-picker-btn {
       width: 36px;
       height: 36px;
@@ -332,9 +377,245 @@
       width: 25px;
       height: 25px;
     }
+
+    .cv-lang-panel {
+      right: calc(100% + 10px);
+      left: auto;
+      top: 50%;
+      bottom: auto;
+      transform: translateY(-50%);
+    }
   }
 
   .hidden {
     display: none !important;
   }
-</style> 
+</style>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  function switchLanguage(newLang: string) {
+    const basePath = '/me';
+    const segments = window.location.pathname.replace(basePath, '').split('/').filter(Boolean);
+    if (['es', 'en'].includes(segments[0])) {
+      segments.shift();
+    }
+    const rest = segments.length > 0 ? '/' + segments.join('/') : '';
+    const url = basePath + '/' + newLang + rest + '/';
+    // Guarda la posición de scroll Y antes de navegar
+    const scrollY = window.scrollY;
+    sessionStorage.setItem('lang-scroll-y', String(scrollY));
+    // SPA swap con View Transitions; fallback a navegación clásica
+    try {
+      navigate(url);
+    } catch {
+      window.location.href = url;
+    }
+  }
+
+  // Id de la sección de <main> más cercana a la parte visible
+  function getCurrentSectionId() {
+    var sections = document.querySelectorAll('main section[id]');
+    var current = '';
+    var offset = 140;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= offset) {
+        current = sections[i].id;
+      }
+    }
+    return current || (sections.length > 0 ? sections[0].id : '');
+  }
+
+  // Restaura scroll Y guardado tras cambio de idioma
+  function restoreScrollAfterLanguageSwitch() {
+    var savedY = null;
+    try {
+      savedY = sessionStorage.getItem('lang-scroll-y');
+      sessionStorage.removeItem('lang-scroll-y');
+    } catch (e) {}
+    if (savedY === null) return;
+    var y = parseInt(savedY, 10);
+    if (!isNaN(y)) {
+      requestAnimationFrame(() => {
+        setTimeout(() => window.scrollTo(0, y), 50);
+      });
+    }
+  }
+
+  // Pre-carga el HTML del otro idioma (una vez) para que el cambio sea instantáneo
+  var prefetchedLocale = null;
+  function prefetchAlternateLocale(currentLocale) {
+    var target = currentLocale === 'es' ? 'en' : 'es';
+    if (prefetchedLocale === target) return;
+    prefetchedLocale = target;
+    try {
+      var link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = '/me/' + target + '/';
+      document.head.appendChild(link);
+    } catch (e) {}
+  }
+
+  function darkenColor(color, percent) {
+    const num = parseInt(color.replace('#', ''), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) - amt;
+    const G = (num >> 8 & 0x00FF) - amt;
+    const B = (num & 0x0000FF) - amt;
+    return '#' + (
+      0x1000000 +
+      (R < 0 ? 0 : R) * 0x10000 +
+      (G < 0 ? 0 : G) * 0x100 +
+      (B < 0 ? 0 : B)
+    ).toString(16).slice(1);
+  }
+
+  function applyColor(primaryColor) {
+    const root = document.documentElement;
+    root.style.setProperty('--primary', primaryColor);
+    root.style.setProperty('--border-color', primaryColor);
+    root.style.setProperty('--accent', primaryColor);
+    root.style.setProperty('--primary-dark', darkenColor(primaryColor, 20));
+    localStorage.setItem('primaryColor', primaryColor);
+  }
+
+  // Detectar locale actual de la URL
+  function getCurrentLocale() {
+    const basePath = '/me';
+    const segments = window.location.pathname.replace(basePath, '').split('/').filter(Boolean);
+    if (['es', 'en'].includes(segments[0])) {
+      return segments[0];
+    }
+    // Si no hay locale en la URL, leer de localStorage o usar default
+    return localStorage.getItem('locale') || 'es';
+  }
+
+  // Descargar CV según el locale actual
+  function downloadCV(name: string, locale: string) {
+    const basePath = '/me';
+    // Los PDFs están en /locales/{es|en}/cv.pdf
+    const cvUrl = `${basePath}/locales/${locale}/cv.pdf`;
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = `cv-${name.toLowerCase().replace(/\s+/g, '-')}-${locale}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function initFloatingButtons() {
+    // Evita doble inicialización sobre el mismo DOM.
+    // El contenedor es nuevo en cada página/swap.
+    var container = document.querySelector('.floating-buttons');
+    if (!container || container.getAttribute('data-fb-init') === '1') return;
+    container.setAttribute('data-fb-init', '1');
+    const currentLocale = getCurrentLocale();
+    // Sincroniza la preferencia guardada con el locale real de la URL
+    localStorage.setItem('locale', currentLocale);
+
+    // Restaura scroll Y si venimos de un cambio de idioma
+    restoreScrollAfterLanguageSwitch();
+
+    // Pre-carga la ruta del otro idioma para un cambio instantáneo
+    prefetchAlternateLocale(currentLocale);
+
+    // Restore theme from localStorage
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle && themeToggle instanceof HTMLInputElement) {
+      const savedTheme = localStorage.getItem('theme');
+      const isDark = savedTheme === 'dark' || (!savedTheme && document.documentElement.classList.contains('dark'));
+      // Aplica el tema guardado de inmediato para que no se pierda al cambiar de idioma
+      const appliedTheme = isDark ? 'dark' : 'light';
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(appliedTheme);
+      if (!savedTheme) localStorage.setItem('theme', appliedTheme);
+      themeToggle.checked = isDark;
+      themeToggle.addEventListener('change', () => {
+        const current = themeToggle.checked ? 'dark' : 'light';
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(current);
+        localStorage.setItem('theme', current);
+      });
+    }
+
+    // Language switcher - toggle between es/en
+    const languageSwitcherBtn = document.getElementById('language-switcher-btn');
+    if (languageSwitcherBtn) {
+      languageSwitcherBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const newLang = currentLocale === 'es' ? 'en' : 'es';
+        localStorage.setItem('locale', newLang);
+        switchLanguage(newLang);
+      });
+    }
+
+    // CV Download button - shows language selection panel
+    const cvDownloadBtn = document.getElementById('cv-download-btn');
+    const cvLangPanel = document.getElementById('cv-lang-panel');
+    if (cvDownloadBtn && cvLangPanel) {
+      cvDownloadBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cvLangPanel.classList.toggle('show');
+      });
+
+      document.querySelectorAll('.cv-lang-option').forEach(option => {
+        option.addEventListener('click', () => {
+          document.querySelectorAll('.cv-lang-option').forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+          const locale = option.dataset.locale;
+          const name = cvDownloadBtn.dataset.name || 'cv';
+          downloadCV(name, locale);
+          cvLangPanel.classList.remove('show');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!cvDownloadBtn.contains(event.target) && !cvLangPanel.contains(event.target)) {
+          cvLangPanel.classList.remove('show');
+        }
+      });
+    }
+
+    const colorPickerBtn = document.getElementById('color-picker-btn');
+    const colorPickerPanel = document.getElementById('color-picker-panel');
+    if (colorPickerBtn && colorPickerPanel) {
+      // Aplica el color guardado al cargar para que el panel se refleje inmediatamente
+      const savedColor = localStorage.getItem('primaryColor');
+      if (savedColor) {
+        applyColor(savedColor);
+        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+        const matchedOption = document.querySelector(`.color-option[data-color="${savedColor}"]`);
+        if (matchedOption) matchedOption.classList.add('selected');
+      }
+
+      colorPickerBtn.addEventListener('click', () => {
+        colorPickerPanel.classList.toggle('show');
+      });
+
+      document.querySelectorAll('.color-option').forEach(option => {
+        option.addEventListener('click', () => {
+          document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+          const newColor = option.dataset.color;
+          applyColor(newColor);
+          colorPickerPanel.classList.remove('show');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!colorPickerBtn.contains(event.target) && !colorPickerPanel.contains(event.target)) {
+          colorPickerPanel.classList.remove('show');
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFloatingButtons);
+  } else {
+    initFloatingButtons();
+  }
+  // Re-inicializa tras navegaciones con View Transitions
+  document.addEventListener('astro:page-load', initFloatingButtons);
+</script>

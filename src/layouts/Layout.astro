@@ -1,36 +1,107 @@
 ---
-import { getInitialTheme } from '../components/theme/script/theme';
-import '../components/modal/styles/modal-tabs.css';
-import { ClientInit } from '@client/index';
-import { getCVData } from "@utils/cv"
-import '@globalStyles/global.css';
+import { ClientRouter } from "astro:transitions";
+import { getInitialTheme } from "../components/theme/script/theme";
+import "../components/modal/styles/modal-tabs.css";
+import { ClientInit } from "@client/index";
+import Footer from "@components/Footer.astro";
+import getCVData from "@utils/cv";
+import type { I18nTFunction } from "@types";
+import "@globalStyles/global.css";
 
 interface Props {
-  title: string
+  title: string;
+  locale: string;
+  t: I18nTFunction;
 }
 
-const { title } = Astro.props
-const cvData = await getCVData()
-const { image, summary } = cvData.basics
+const { title, locale, t } = Astro.props;
+const cvData = getCVData(locale);
+const { name, label, image, summary, location, profiles } = cvData.basics;
+const linkedInUrl = profiles.find((p) => p.network === "LinkedIn")?.url;
 const initialTheme = getInitialTheme();
 ---
 
 <!doctype html>
-<html lang="es" class={initialTheme}>
+<html lang={locale} class={initialTheme}>
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
+
     <meta name="description" content={summary} />
-    <meta name="viewport" content="width=device-width" />
-    
-    <!-- Favicon y logos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content={name} />
+    <meta name="format-detection" content="telephone=no" />
+    <ClientRouter />
+    {/* Aplica el tema guardado antes del primer pintado (evita flash y lo preserva entre idiomas) */}
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(saved);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="theme-color" content="#4a5568" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#B22222" media="(prefers-color-scheme: dark)" />
+
+    {/* Canonical URL */}
+    <link rel="canonical" href={`https://claiderman.github.io/me/${locale}/`} />
+
+    {/* Favicons */}
     <link rel="icon" type="image/svg+xml" href="/me/favicon.svg" />
     <link rel="apple-touch-icon" href="/me/logo.svg" />
     <link rel="mask-icon" href="/me/logo.svg" color="#1E1E2E" />
-    <meta name="theme-color" content="#1E1E2E" />
     <meta name="msapplication-TileColor" content="#1E1E2E" />
-    <meta property="og:image" content="/me/logo.svg" />
-    
+
+    {/* Open Graph */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={summary} />
+    <meta property="og:image" content={`https://claiderman.github.io${image}`} />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
+    <meta property="og:url" content={`https://claiderman.github.io/me/${locale}/`} />
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content={locale === 'es' ? 'es_CO' : 'en_US'} />
+    <meta property="profile:first_name" content="Claiderman" />
+    <meta property="profile:last_name" content="Lozano Cardona" />
+    <meta property="profile:username" content="claiderman" />
+
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={summary} />
+    <meta name="twitter:image" content={`https://claiderman.github.io${image}`} />
+    <meta name="twitter:image:alt" content={name} />
+
+    {/* JSON-LD Structured Data - Person */}
+     <script type="application/ld+json">
+{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": name,
+      "jobTitle": label,
+      "url": "https://claiderman.github.io/me/",
+      "sameAs": [
+        linkedInUrl || profiles.find(p => p.network === "LinkedIn")?.url || "https://www.linkedin.com/in/claiderman-lozano",
+        "https://github.com/claiderman"
+      ].filter(Boolean),
+      "image": `https://claiderman.github.io${image}`,
+      "description": summary,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": location.city,
+        "addressRegion": location.department,
+        "addressCountry": location.countryCode
+      },
+      "knowsAbout": cvData.skills?.flatMap(s => s.keywords).join(", "),
+      "knowsLanguage": cvData.languages?.map(l => l.language).join(", ")
+    })}</script>
+
+    {/* Preload key assets */}
     <link rel="preload" as="image" href={image} />
     <link rel="preload" as="image" href="/me/logo.svg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -39,6 +110,14 @@ const initialTheme = getInitialTheme();
     <main class="mt-16 px-4 sm:px-6 lg:px-8">
       <slot />
     </main>
+    <Footer
+      t={t}
+      locale={locale as "es" | "en"}
+      name={name}
+      label={label}
+      email={cvData.basics.email}
+      profiles={profiles}
+    />
     <ClientInit />
   </body>
 </html>

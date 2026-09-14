@@ -1,0 +1,118 @@
+---
+import { FloatingButtons, ScrollToTopButton } from "@buttons/index";
+import TimelineNav from "@components/TimelineNav.astro";
+import { loadTranslations } from "@i18n/utils";
+import Layout from "@layouts/Layout.astro";
+import About from "@sections/About.astro";
+import Hero from "@sections/Hero.astro";
+import {
+  EducationSection,
+  ExperienceSection,
+  LanguagesSection,
+  SkillsSection,
+  TestimonialsSection,
+} from "@sections/index";
+import getCVData from "@utils/cv";
+import "../../styles/global.css";
+
+export const getStaticPaths = async () => {
+  return ["es", "en"].map((locale) => ({
+    params: { locale },
+    props: { locale },
+  }));
+};
+
+const { locale } = Astro.params;
+const t = await loadTranslations(locale as "es" | "en");
+
+const cvData = await getCVData(locale as "es" | "en");
+const { name, label } = cvData.basics;
+
+const sections = [
+  { id: "inicio", title: t("navigation.home"), icon: "fas fa-home" },
+  { id: "sobre-mi", title: t("navigation.profile"), icon: "fas fa-id-card" },
+  {
+    id: "experiencia",
+    title: t("navigation.experience"),
+    icon: "fas fa-briefcase",
+  },
+  {
+    id: "testimonios",
+    title: t("sections.testimonials"),
+    icon: "fas fa-quote-left",
+  },
+  {
+    id: "educacion",
+    title: t("navigation.education"),
+    icon: "fas fa-graduation-cap",
+  },
+  { id: "idiomas", title: t("navigation.languages"), icon: "fas fa-language" },
+  { id: "habilidades", title: t("navigation.skills"), icon: "fas fa-tools" },
+];
+---
+
+<Layout title={`${name} - ${label}`} locale={locale} t={t}>
+  <TimelineNav sections={sections} t={t} />
+  <main>
+    <section id="inicio">
+      <Hero t={t} locale={locale} />
+    </section>
+    <section id="sobre-mi">
+      <About t={t} locale={locale} />
+    </section>
+    <section id="experiencia">
+      <ExperienceSection t={t} locale={locale} />
+    </section>
+    <section id="educacion">
+      <EducationSection t={t} locale={locale} />
+    </section>
+    <section id="idiomas">
+      <LanguagesSection t={t} locale={locale} />
+    </section>
+    <section id="testimonios">
+      <TestimonialsSection t={t} locale={locale} />
+    </section>
+    <section id="habilidades">
+      <SkillsSection t={t} locale={locale} />
+    </section>
+  </main>
+
+  <FloatingButtons t={t} locale={locale} name={name} />
+  <ScrollToTopButton t={t} />
+</Layout>
+
+<style>
+  main {
+    padding: 4rem 4rem 4rem 8rem;
+    margin: auto;
+    width: 100%;
+  }
+
+  section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
+  }
+
+  @media (width <= 768px) {
+    main {
+      padding: 1.5rem;
+      padding-bottom: calc(1.5rem + 100px);
+    }
+
+    section {
+      margin-bottom: 3rem;
+      scroll-margin-top: 1rem;
+    }
+  }
+
+  @media (width <= 480px) {
+    main {
+      padding: 1rem;
+      padding-bottom: calc(1rem + 90px);
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+  }
+</style>

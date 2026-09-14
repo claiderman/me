@@ -1,5 +1,5 @@
 ---
-import { CompactYearBadge } from '@yearBadge/index';
+import { CompactYearBadge } from "@yearBadge/index";
 
 interface Props {
   institution: string;
@@ -9,21 +9,48 @@ interface Props {
   endYear?: string | number;
   url: string;
   score?: string;
+  viewLabel?: string;
+  presentLabel?: string;
+  inLabel?: string;
 }
 
-const { institution, area, studyType, startYear, endYear, url, score } = Astro.props;
+const {
+  institution,
+  area,
+  studyType,
+  startYear,
+  endYear,
+  url,
+  score,
+  viewLabel = "Ver institución",
+  presentLabel = "Actual",
+  inLabel = "en",
+} = Astro.props;
 const isLanguage = area === "Inglés";
+// Evita "Tecnólogo en Tecnólogo en ..." cuando el área ya incluye el tipo de estudio
+const degreeText = area.toLowerCase().startsWith(studyType.toLowerCase())
+  ? area
+  : `${studyType} ${inLabel} ${area}`;
 ---
 
 <a href={url} target="_blank" rel="noopener noreferrer" class="card education-card">
   <div class="card-content education-card-content">
     <div class="card-header education-header">
       <h3>{institution}</h3>
-      <CompactYearBadge startYear={startYear} endYear={endYear} showIcon={true} />
+      <CompactYearBadge
+        startYear={startYear}
+        endYear={endYear}
+        showIcon={true}
+        presentLabel={presentLabel}
+      />
     </div>
     <p class="card-description education-degree">
-      {studyType} {isLanguage && <span class="language-level">{area}</span>}
-      {!isLanguage && `en ${area}`}
+      {isLanguage && (
+        <>
+          {studyType} <span class="language-level">{area}</span>
+        </>
+      )}
+      {!isLanguage && degreeText}
     </p>
     {isLanguage && score && (
       <p class="language-score">
@@ -32,7 +59,7 @@ const isLanguage = area === "Inglés";
     )}
     <div class="card-indicator education-indicator">
       <i class="fas fa-external-link-alt"></i>
-      <span>Ver institución</span>
+      <span>{viewLabel}</span>
     </div>
   </div>
 </a>

@@ -1,13 +1,13 @@
 ---
 interface Props {
-  title?: string | any;
+  title?: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <section>
-  {title && <h2 set:html={typeof title === 'string' ? title : ''}>{typeof title !== 'string' && title}</h2>}
+  {title && <h2 set:html={title}>{title}</h2>}
   <slot />
 </section>
 

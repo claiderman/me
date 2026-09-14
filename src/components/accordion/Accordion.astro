@@ -6,7 +6,12 @@ interface Props {
   class?: string;
 }
 
-const { title, icon, initiallyExpanded = false, class: className = '' } = Astro.props;
+const {
+  title,
+  icon,
+  initiallyExpanded = true,
+  class: className = "",
+} = Astro.props;
 ---
 
 <div class={`accordion-container ${className}`}>

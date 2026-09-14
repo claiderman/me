@@ -1,0 +1,30 @@
+<script>
+  import i18next from 'i18next';
+  import enCommon from '@i18n/locales/en/common.json';
+  import enCV from '@i18n/locales/en/cv.json';
+  import enSections from '@i18n/locales/en/sections.json';
+  import esCommon from '@i18n/locales/es/common.json';
+  import esCV from '@i18n/locales/es/cv.json';
+  import esSections from '@i18n/locales/es/sections.json';
+
+  const resources = {
+    es: { common: esCommon, cv: esCV, sections: esSections },
+    en: { common: enCommon, cv: enCV, sections: enSections },
+  };
+
+  // Inicializa i18next en el cliente (solo si no existe)
+  if (!window.i18next) {
+    i18next.init({
+      lng: (document.documentElement.lang as 'es' | 'en') || 'es',
+      fallbackLng: 'es',
+      supportedLngs: ['es', 'en'],
+      ns: ['common', 'cv', 'sections'],
+      defaultNS: 'common',
+      resources,
+      interpolation: { escapeValue: false },
+      returnNull: false,
+      returnEmptyString: false,
+    });
+    window.i18next = i18next;
+  }
+</script>

@@ -5,17 +5,19 @@ interface Props {
   class?: string;
   showIcon?: boolean;
   variant?: "primary" | "secondary" | "outline";
+  presentLabel?: string;
 }
 
 const {
   startYear,
   endYear,
-  class: className = '',
+  class: className = "",
   showIcon = true,
-  variant = "primary"
+  variant = "primary",
+  presentLabel = "Actual",
 } = Astro.props;
 
-const displayEndYear = endYear || "Actual";
+const displayEndYear = endYear || presentLabel;
 const sameYear = startYear === endYear && endYear !== undefined;
 
 const getVariantClass = () => {
@@ -35,4 +37,4 @@ const getVariantClass = () => {
   <time>
     {sameYear ? startYear : `${startYear} - ${displayEndYear}`}
   </time>
-</div> 
+</div>

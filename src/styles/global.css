@@ -1,8 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
-@import url('@card/styles/cards.css');
-@import url('@yearBadge/styles/yerarBadges.css');
-@import url('@accordion/styles/accordion.css');
-@import url('@modal/styles/modal.css');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap");
+@import url("@card/styles/cards.css");
+@import url("@yearBadge/styles/yerarBadges.css");
+@import url("@accordion/styles/accordion.css");
+@import url("@modal/styles/modal.css");
+
+/* Cambio de idioma instantáneo: sin fundido de View Transitions */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation: none !important;
+}
 
 :root {
   /* Light theme variables - Colores más suaves */
@@ -29,13 +36,13 @@
   --background: #1a1a1a;
   --text: #e0e0e0;
   --secondary: #a0a0a0;
-  --primary: #B22222;
+  --primary: #b22222;
   --border: #333333;
-  --border-color: #B22222;
+  --border-color: #b22222;
   --card-bg: #2a2a2a;
   --bg-secondary: #333333;
   --bg-hover: #353535;
-  --accent: #B22222;
+  --accent: #b22222;
   --card-border: #374151;
   --shadow: rgba(0, 0, 0, 0.3);
   --text-color: #e0e0e0;
@@ -48,11 +55,16 @@
 body {
   background-color: var(--background);
   color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   line-height: 1.5;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease, filter 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    filter 0.3s ease;
 }
 
 /* Card styles */
@@ -112,7 +124,7 @@ input {
 
 /* Configuración global de fuentes */
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -121,8 +133,13 @@ html {
 }
 
 /* Estilos para títulos */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
@@ -159,33 +176,41 @@ h6 {
 }
 
 /* Estilos para texto */
-p, li, span, a {
-  font-family: 'Roboto', sans-serif;
+p,
+li,
+span,
+a {
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 1.6;
 }
 
 /* Estilos para botones */
-button, .button {
-  font-family: 'Inter', sans-serif;
+button,
+.button {
+  font-family: "Inter", sans-serif;
   font-weight: 500;
 }
 
 /* Estilos para elementos de navegación */
-nav, .nav-link {
-  font-family: 'Inter', sans-serif;
+nav,
+.nav-link {
+  font-family: "Inter", sans-serif;
   font-weight: 500;
 }
 
 /* Estilos para elementos de formulario */
-input, textarea, select {
-  font-family: 'Roboto', sans-serif;
+input,
+textarea,
+select {
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
 }
 
 /* Estilos para elementos de código */
-code, pre {
-  font-family: 'Roboto Mono', monospace;
+code,
+pre {
+  font-family: "Roboto Mono", monospace;
   font-weight: 400;
 }
 
@@ -222,13 +247,13 @@ code, pre {
 
 /* Timeline Navigation Styles */
 .timeline-dot.active {
-  background: var(--accent) !important;
-  box-shadow: 0 0 0 4px var(--accent-light) !important;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-light);
 }
 
 .timeline-item:hover .timeline-dot.active,
 .timeline-item:focus .timeline-dot.active {
-  box-shadow: 0 0 0 6px var(--accent-light) !important;
+  box-shadow: 0 0 0 6px var(--accent-light);
 }
 
 /* Reading Modes */
@@ -284,7 +309,8 @@ body.mode-dim.dark {
 
 /* Transiciones suaves para los cambios de modo */
 body {
-  transition: background-color 0.3s ease, 
-              color 0.3s ease, 
-              filter 0.3s ease;
-} 
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    filter 0.3s ease;
+}

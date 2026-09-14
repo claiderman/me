@@ -1,22 +1,33 @@
 ---
-import { Section } from "@sections/index";
 import { Accordion } from "@accordion/index";
-import { getCVData } from "@utils/cv";
-import EducationCard from "@sections/education/card/EducationCard.astro";
+import Section from "@sections/Section.astro";
+import type { I18nTFunction } from "@types";
+import getCVData from "@utils/cv";
+import EducationCard from "./card/EducationCard.astro";
 
-const cvData = await getCVData()
-const { education } = cvData
+interface Props {
+  t: I18nTFunction;
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const cvData = await getCVData(locale);
+const { education } = cvData;
+const isEnglish = locale === "en";
+const viewLabel = isEnglish ? "View institution" : "Ver institución";
+const presentLabel = isEnglish ? "Present" : "Actual";
+const inLabel = isEnglish ? "in" : "en";
 ---
 
 <Section>
-  <Accordion title="Educación" icon="fas fa-graduation-cap">
+  <Accordion title={t('sections.education')} icon="fas fa-graduation-cap">
     <div class="cards-grid education-grid">
       {
         education.map(
           ({ institution, area, studyType, startDate, endDate, url, score }) => {
-            const startYear = new Date(startDate).getFullYear()
+            const startYear = new Date(startDate).getFullYear();
             const endYear =
-              endDate != null ? new Date(endDate).getFullYear() : "Actual"
+              endDate != null ? new Date(endDate).getFullYear() : presentLabel;
 
             return (
               <EducationCard
@@ -27,8 +38,11 @@ const { education } = cvData
                 endYear={endYear}
                 url={url}
                 score={score}
+                viewLabel={viewLabel}
+                presentLabel={presentLabel}
+                inLabel={inLabel}
               />
-            )
+            );
           }
         )
       }

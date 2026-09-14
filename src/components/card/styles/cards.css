@@ -1,7 +1,10 @@
 /* Estilos genéricos para todas las tarjetas */
 
 /* Tarjeta básica */
-.card, .company-card, .education-card, .project-card {
+.card,
+.company-card,
+.education-card,
+.project-card {
   background: transparent;
   border-radius: 6px;
   border: 1px solid var(--border, #e5e5e5);
@@ -12,32 +15,26 @@
   overflow: hidden;
 }
 
-.card:hover, .company-card:hover, .education-card:hover, .project-card:hover {
+.card:hover,
+.company-card:hover,
+.education-card:hover,
+.project-card:hover {
   transform: translateY(-2px);
-  border-color: var(--primary, #8B0000);
+  border-color: var(--primary, #8b0000);
   background-color: var(--bg-hover);
 }
 
-/* Asegurar que el texto permanezca visible en el hover */
-.card:hover h3, 
-.company-card:hover h3, 
-.education-card:hover h3, 
-.project-card:hover h3 {
-  color: var(--text);
-}
-
-.card:hover .card-description, 
-.company-card:hover .card-description, 
-.education-card:hover .card-description, 
-.project-card:hover .card-description {
-  color: var(--secondary);
-}
-
-.card-content, .company-card-content, .education-card-content, .project-card-content {
+.card-content,
+.company-card-content,
+.education-card-content,
+.project-card-content {
   padding: 0.75rem;
 }
 
-.card-header, .company-header, .education-header, .project-header {
+.card-header,
+.company-header,
+.education-header,
+.project-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,51 +42,14 @@
   border-bottom: none;
 }
 
-.card h3, .company-card h3, .education-card h3, .project-card h3 {
+.card h3,
+.company-card h3,
+.education-card h3,
+.project-card h3 {
   margin: 0;
   color: var(--text, #333);
   font-size: 1rem;
   font-weight: 500;
-}
-
-.card-indicator, .company-indicator, .education-indicator, .project-indicator {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  color: var(--secondary, #666);
-  font-size: 0.8rem;
-  transition: color 0.3s ease;
-}
-
-.card-indicator i, .company-indicator i, .education-indicator i, .project-indicator i {
-  font-size: 0.9rem;
-}
-
-.card:hover .card-indicator, 
-.company-card:hover .company-indicator, 
-.education-card:hover .education-indicator,
-.project-card:hover .project-indicator {
-  color: var(--primary, #800020);
-}
-
-/* Estilos para la cuadrícula de tarjetas */
-.cards-grid, .companies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.75rem;
-  padding: 0.75rem 0.5rem;
-}
-
-@media (max-width: 768px) {
-  .cards-grid, .companies-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .card-header, .company-header, .education-header, .project-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
 }
 
 /* Estilos para la descripción en las tarjetas */
@@ -99,8 +59,77 @@
   font-size: 0.85rem;
 }
 
+/* Asegurar que el texto permanezca visible en el hover */
+.card:hover h3,
+.company-card:hover h3,
+.education-card:hover h3,
+.project-card:hover h3 {
+  color: var(--text);
+}
+
+.card:hover .card-description,
+.company-card:hover .card-description,
+.education-card:hover .card-description,
+.project-card:hover .card-description {
+  color: var(--secondary);
+}
+
+.card-indicator,
+.company-indicator,
+.education-indicator,
+.project-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--secondary, #666);
+  font-size: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.card-indicator i,
+.company-indicator i,
+.education-indicator i,
+.project-indicator i {
+  font-size: 0.9rem;
+}
+
+.card:hover .card-indicator,
+.company-card:hover .company-indicator,
+.education-card:hover .education-indicator,
+.project-card:hover .project-indicator {
+  color: var(--primary, #800020);
+}
+
+/* Estilos para la cuadrícula de tarjetas */
+.cards-grid,
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .cards-grid,
+  .companies-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-header,
+  .company-header,
+  .education-header,
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
 /* Estilos para tarjetas de enlace */
-a.card, a.company-card, a.education-card, a.project-card {
+a.card,
+a.company-card,
+a.education-card,
+a.project-card {
   display: block;
   text-decoration: none;
 }
@@ -300,4 +329,4 @@ a.card, a.company-card, a.education-card, a.project-card {
   .modal-company-header h2 {
     font-size: 1.35rem;
   }
-} 
+}

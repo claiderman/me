@@ -1,19 +1,31 @@
 ---
-import ExperienceModal from "@sections/experience/modal/ExperienceModal.astro";
-import { Section } from "@sections/index";
 import { Accordion } from "@accordion/index";
-import { getCVData } from "@utils/cv";
-import CompanyCard from "@sections/experience/company/card/CompanyCard.astro";
+import Section from "@sections/Section.astro";
+import type { I18nTFunction } from "@types";
+import getCVData from "@utils/cv";
+import CompanyCard from "./company/card/CompanyCard.astro";
+import ExperienceModal from "./modal/ExperienceModal.astro";
 
-const cvData = await getCVData();
+interface Props {
+  t: I18nTFunction;
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const cvData = await getCVData(locale);
 const { work, projects } = cvData;
+const isEnglish = locale === "en";
+const viewExperienceLabel = isEnglish ? "View experience" : "Ver experiencia";
+const presentLabel = isEnglish ? "Present" : "Actual";
+const modalTitle = isEnglish ? "Work Experience" : "Experiencia Laboral";
+const modalCloseLabel = isEnglish ? "Close" : "Cerrar";
 
 // Extraer los nombres de las empresas de las experiencias laborales
-const companyNames = work.map(exp => exp.name.split(" - ")[0]);
+const companyNames = work.map((exp) => exp.name.split(" - ")[0]);
 
 // Agrupar experiencias laborales por empresa
 const groupedWork = {};
-work.forEach(exp => {
+work.forEach((exp) => {
   const companyName = exp.name.split(" - ")[0];
   if (!groupedWork[companyName]) {
     groupedWork[companyName] = [];
@@ -22,36 +34,34 @@ work.forEach(exp => {
 });
 
 // Agrupar proyectos por empresa
-// Asegurarnos de que usamos exactamente los mismos nombres de empresa que en las experiencias
 const groupedProjects = {};
-projects.forEach(project => {
-  // Encontrar la empresa que más coincide con el campo company del proyecto
+projects.forEach((project) => {
   let matchedCompany = "";
   for (const companyName of companyNames) {
-    if (project.company === companyName || 
-        project.company.includes(companyName) || 
-        companyName.includes(project.company)) {
+    if (
+      project.company === companyName ||
+      project.company.includes(companyName) ||
+      companyName.includes(project.company)
+    ) {
       matchedCompany = companyName;
       break;
     }
   }
-  
-  // Si no hay coincidencia, usar el valor original
+
   if (!matchedCompany) {
     matchedCompany = project.company;
   }
-  
+
   if (!groupedProjects[matchedCompany]) {
     groupedProjects[matchedCompany] = [];
   }
-  
+
   groupedProjects[matchedCompany].push(project);
 });
-
 ---
 
 <Section>
-  <Accordion title="Experiencia laboral" icon="fas fa-briefcase" initiallyExpanded={true}>
+  <Accordion title={t('sections.experience')} icon="fas fa-briefcase">
     <div class="companies-grid">
       {
         Object.entries(groupedWork).map(([company, experiences]) => {
@@ -68,6 +78,8 @@ projects.forEach(project => {
               company={company}
               startYear={startYear}
               endYear={endYear}
+              viewLabel={viewExperienceLabel}
+              presentLabel={presentLabel}
             />
           );
         })
@@ -76,7 +88,7 @@ projects.forEach(project => {
   </Accordion>
 </Section>
 
-<ExperienceModal />
+<ExperienceModal title={modalTitle} closeLabel={modalCloseLabel} />
 
 <div
   id="grouped-work-data"
@@ -90,4 +102,3 @@ projects.forEach(project => {
   style="display: none;"
 >
 </div>
-

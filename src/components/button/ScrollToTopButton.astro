@@ -1,4 +1,14 @@
-<button id="scrollToTop" class="scroll-to-top" aria-label="Volver arriba">
+---
+import type { I18nTFunction } from "@types";
+
+interface Props {
+  t: I18nTFunction;
+}
+
+const { t } = Astro.props;
+---
+
+<button id="scrollToTop" class="scroll-to-top" aria-label={t('aria.scrollToTop')}>
   <i class="fas fa-arrow-up"></i>
 </button>
 
@@ -47,7 +57,7 @@
 
 <script>
   const scrollToTop = document.getElementById('scrollToTop');
-  const scrollThreshold = 300; // Aparece después de 300px de scroll
+  const scrollThreshold = 300; // Appears after 300px of scroll
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > scrollThreshold) {
@@ -63,4 +73,4 @@
       behavior: 'smooth'
     });
   });
-</script> 
+</script>
