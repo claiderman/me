@@ -68,3 +68,17 @@ All internal links: `/me/...`
 ```tsx
 <a href="/me/"></a>
 ```
+
+## Required Validation
+
+Run these commands before opening a pull request or merging changes:
+
+```bash
+npm ci
+npm run lint
+npm run typecheck
+npm run build
+```
+
+The GitHub Actions workflow validates JSON locale resources before the Astro
+typecheck and production build. There is currently no automated test suite.
