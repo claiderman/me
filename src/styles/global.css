@@ -8,6 +8,7 @@
 ::view-transition-group(*),
 ::view-transition-old(*),
 ::view-transition-new(*) {
+  /* biome-ignore lint/complexity/noImportantStyles: View-transition animations must override browser transition styles. */
   animation: none !important;
 }
 

@@ -12,7 +12,9 @@ interface Props {
 }
 
 const { t, locale, name, label, email, profiles } = Astro.props;
-const linkedInUrl = profiles.find((profile) => profile.network === "LinkedIn")?.url;
+const linkedInUrl = profiles.find(
+  (profile) => profile.network === "LinkedIn",
+)?.url;
 const githubUrl = profiles.find((profile) => profile.network === "GitHub")?.url;
 const year = new Date().getFullYear();
 const homeUrl = `/me/${locale}/`;
