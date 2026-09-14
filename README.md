@@ -1,74 +1,136 @@
-# 👋 ¡Hola! Soy Claiderman Alexander Lozano
+# Portafolio personal y CV multilenguaje
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/claiderman-lozano)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/claiderman)
+Este proyecto es un portafolio personal desarrollado con Astro y publicado bajo la base path /me. La web se presenta en dos idiomas:
 
-## 👨‍💻 Sobre mí
+- Español: /me/es/
+- English: /me/en/
 
-Desarrollador Backend con más de 4 años de experiencia en desarrollo de software. Tengo conocimientos en Java, TypeScript, Python y servicios cloud (AWS, Azure). He trabajado implementando APIs REST, gestionando bases de datos y desplegando soluciones en la nube. He tenido la oportunidad de contribuir en proyectos para clientes como Bancolombia, Banistmo y Grupo Familia, y actualmente trabajo en el desarrollo de backends para videojuegos y aplicaciones interactivas en Polygonus.
+La redirección inicial detecta el idioma guardado en el navegador o el idioma del navegador y luego lleva al usuario a la versión correcta. También se incluyen los CV descargables por idioma en las rutas de archivos estáticos.
 
-- 🎮 Desarrollo de backends para videojuegos y aplicaciones interactivas
-- ☁️ Experiencia en arquitecturas serverless y cloud (AWS)
-- 🚀 Implementación de microservicios escalables
-- 🔄 Prácticas DevOps y CI/CD
-- 📊 Optimización de bases de datos y sistemas de caché
+## URLs principales
 
-## 🛠️ Stack Tecnológico
+- Inicio: /me/
+- Español: /me/es/
+- English: /me/en/
+- CV español: /me/locales/es/cv.pdf
+- CV English: /me/locales/en/cv.pdf
 
-### Lenguajes
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=c-sharp&logoColor=white)
+## Requisitos
 
-### Frameworks
-![Spring Framework](https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=spring&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white)
+- Node.js 18 o superior
+- npm
 
-### Base de Datos
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-00000F?style=flat-square&logo=mysql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat-square&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
-![DynamoDB](https://img.shields.io/badge/DynamoDB-4053D6?style=flat-square&logo=amazon-dynamodb&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+## Instalación
 
-### Cloud & DevOps
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
+```bash
+npm install
+```
 
-### Mensajería
-![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white)
-![AWS SQS](https://img.shields.io/badge/AWS_SQS-FF4F8B?style=flat-square&logo=amazon-sqs&logoColor=white)
+## Desarrollo
 
-## 🚀 Proyectos Destacados
+```bash
+npm run start
+```
 
-### Gaming & Web3
-- 🎮 [The Next Legends (TNL)](https://www.thenextlegends.xyz/) - Backend para juego de boxeo con IA y NFTs
-- 🏎️ [Raicers](https://www.raicers.com/) - Backend para juego de carreras con IA y criptomonedas
-- ⚽ [AI League FIFA](https://www.futureverse.com/ecosystem) - Backend para juego de fútbol con IA
+Esto inicia el proyecto en modo desarrollo con Astro.
 
-### Fintech & Enterprise
-- 🏦 Sistema de Log de Auditoría para Bancolombia
-- 💳 Gestión Digital de Créditos para Banistmo
-- 📱 Aplicación móvil V-App para Nosotras
+## Build de producción
 
-## 🎯 Intereses
+```bash
+npm run build
+```
 
-- 🎮 Desarrollo de backends para videojuegos
-- 🌐 Arquitecturas cloud-native y serverless
-- 🤖 Inteligencia Artificial
-- ⛓️ Blockchain y Web3
+El comando ejecuta la validación de TypeScript y genera la versión de producción.
 
-## 📫 Contacto
+## Vista previa local
 
-| 📧 Email | claiderman.lozano@gmail.com |
-|----------|----------------------------|
-| 📱 LinkedIn | [Claiderman Alexander Lozano Cardona](https://www.linkedin.com/in/claiderman-lozano) |
-| 🌐 GitHub | [@claiderman](https://github.com/claiderman) |
+```bash
+npm run preview
+```
+
+## Estructura clave
+
+```text
+.
+├── public/
+│   └── locales/
+│       ├── es/
+│       │   ├── common.json
+│       │   ├── cv.json
+│       │   ├── cv.pdf
+│       │   └── sections.json
+│       └── en/
+│           ├── common.json
+│           ├── cv.json
+│           ├── cv.pdf
+│           └── sections.json
+├── src/
+│   ├── pages/
+│   │   ├── index.astro
+│   │   └── [locale]/index.astro
+│   ├── i18n/
+│   ├── components/
+│   ├── layouts/
+│   ├── utils/
+│   └── data/
+├── astro.config.mjs
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
+## Lógica de idioma y CV
+
+### Redirección por idioma
+
+La página inicial revisa estos valores en orden:
+
+1. localStorage.locale
+2. idioma del navegador
+3. fallback: es
+
+Luego redirige a la ruta correcta:
+
+- /me/es/
+- /me/en/
+
+### CV según idioma
+
+La descarga del CV usa el idioma actual de la navegación para apuntar a:
+
+- Español: /me/locales/es/cv.pdf
+- English: /me/locales/en/cv.pdf
+
+Eso garantiza que el usuario descargue la hoja de vida correspondiente al idioma seleccionado.
+
+## Despliegue
+
+Este proyecto está preparado para desplegarse en GitHub Pages con la base configurada en /me.
+
+Configuración relevante en Astro:
+
+```js
+site: "https://claiderman.github.io",
+base: "/me"
+```
+
+## Contacto
+
+- LinkedIn: https://www.linkedin.com/in/claiderman-lozano
+- GitHub: https://github.com/claiderman
+- Email: claiderman.lozano@gmail.com
+
+## Nota sobre contenido actualizado
+
+Los datos del portafolio y los archivos PDF de CV se mantienen actualizados en los archivos locales del proyecto y deben reflejarse en:
+
+- public/locales/es/cv.pdf
+- public/locales/en/cv.pdf
+- src/data/cv.json
+- src/data/cv.en.json
+
+La ruta de la página y la descarga del CV están alineadas con el idioma actual para asegurar una experiencia correcta en ES y EN.
 
 ---
-⭐️ From [claiderman](https://github.com/claiderman)
+
+Hecho para un portafolio personal multilenguaje con experiencia en desarrollo, backend y soluciones cloud.
