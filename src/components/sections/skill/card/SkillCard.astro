@@ -4,12 +4,13 @@ interface Props {
   iconHtml: string;
   keywords: string[];
   skillIcons: Record<string, string>;
+  hidden?: boolean;
 }
 
-const { name, iconHtml, keywords, skillIcons } = Astro.props;
+const { name, iconHtml, keywords, skillIcons, hidden = false } = Astro.props;
 ---
 
-<div class="card skill-card">
+<div class="card skill-card" hidden={hidden}>
   <div class="card-content">
     <div class="card-header skill-header">
       <div class="skill-icon">

@@ -258,6 +258,21 @@
         "Excalidraw",
         "Figma"
       ]
+    },
+    {
+      "name": "AI and Automation",
+      "keywords": [
+        "LangChain",
+        "Hermes Agents",
+        "RAG",
+        "Ollama",
+        "Qdrant",
+        "Pgvector"
+      ]
+    },
+    {
+      "name": "Tools",
+      "keywords": ["Cursor", "Opencode"]
     }
   ],
   "languages": [

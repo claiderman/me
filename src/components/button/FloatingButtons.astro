@@ -123,8 +123,15 @@ const langCode = effectiveLocale.toUpperCase();
 
   .slider i {
     font-size: 0.8rem;
-    color: var(--text);
     z-index: 1;
+  }
+
+  .slider i.fa-sun {
+    color: #f59e0b;
+  }
+
+  .slider i.fa-moon {
+    color: #64748b;
   }
 
   .language-switcher-wrapper {
@@ -139,7 +146,7 @@ const langCode = effectiveLocale.toUpperCase();
     border-radius: 50%;
     border: 1px solid var(--border);
     background: var(--card-bg);
-    color: var(--text);
+    color: #2563eb;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -174,7 +181,7 @@ const langCode = effectiveLocale.toUpperCase();
     border-radius: 50%;
     border: 1px solid var(--border);
     background: var(--card-bg);
-    color: var(--text);
+    color: #16a34a;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -187,7 +194,6 @@ const langCode = effectiveLocale.toUpperCase();
   .cv-download-btn:hover {
     transform: scale(1.1);
     border-color: var(--primary);
-    color: var(--primary);
   }
 
   .color-picker-btn {
@@ -196,7 +202,7 @@ const langCode = effectiveLocale.toUpperCase();
     border-radius: 50%;
     border: 1px solid var(--border);
     background: var(--card-bg);
-    color: var(--text);
+    color: #d97706;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -310,33 +316,34 @@ const langCode = effectiveLocale.toUpperCase();
 
   @media (max-width: 768px) {
     .floating-buttons {
-      right: 1rem;
+      right: 0.75rem;
       top: auto;
-      bottom: calc(5.5rem + 80px);
+      bottom: calc(2rem + 80px + 44px);
       transform: none;
       flex-direction: column;
+      align-items: center;
       gap: 0.75rem;
     }
 
     .theme-switch {
       width: 36px;
-      height: 60px;
+      height: 36px;
     }
 
     .slider {
-      flex-direction: column;
-      padding: 6px 0;
+      flex-direction: row;
+      padding: 0 6px;
     }
 
     .slider:before {
-      left: 9px;
-      top: 6px;
+      left: 5px;
+      top: 9px;
       width: 16px;
       height: 16px;
     }
 
     input:checked + .slider:before {
-      transform: translateY(32px);
+      transform: translateX(14px);
     }
 
     .language-switcher-btn {
